@@ -23,7 +23,7 @@ exports.plugin = {
         });
 
         // etc...
-        console.log('Registered myplugin');
+        //console.log('Registered myplugin');
         //await someAsyncMethods();
     }
 };
@@ -65,4 +65,51 @@ exports.plugin = {
         }
     },
 }
+
+    server.route({
+        method: 'GET',
+        path:'/hello2/{name}',
+        handler: (request, h) => {
+    
+           return  `Hello ${request.params.name}!`;
+        },
+        options: {
+            validate: {
+                headers: Joi.object({
+                    cookie: Joi.string().required()
+                }),
+                options: {
+                    allowUnknown: true
+                }
+            }
+        }
+    });
+
+
+    server.route({
+        method: 'GET',
+        path: '/',
+        handler: (request, h) => {
+            return 'Hello World!';
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/hello/{name}',
+        handler: function (request, h) {
+    
+            return `Hello ${request.params.name}!`;
+        },
+        options: {
+            validate: {
+                params: Joi.object({
+                    name: Joi.string().min(3).max(10)
+                })
+            }
+        }
+    });    
+
+
+
 */
