@@ -19,7 +19,8 @@ const init = async () => {
 
     const swaggerOptions = {
         info: {
-                title: 'Test API Documentation',
+                title: 'Onify Hub Functions',
+                //description: '',
                 version: Pack.version,
             },
             basePath: "/api/v1",

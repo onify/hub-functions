@@ -3,20 +3,30 @@ const Joi = require('joi');
 const {XMLParser, XMLValidator} = require('fast-xml-parser');
 
 exports.plugin = {
-    name: 'parse',
+    name: 'parser',
     register: async function (server, options) {
 
         server.route({
             method: 'POST',
-            path: '/api/v1/parse/xml',
+            path: '/api/v1/parser/xml',
             options: {
-                description: 'Get todo',
-                notes: 'Returns a todo item by the id passed in the path',
-                tags: ['api', 'parse'], 
+                description: 'Parse XML content to JSON object',
+                notes: 'Parses XML content and returns a JSON object',
+                tags: ['api', 'parser'], 
+                plugins: {
+                    'hapi-swagger': {
+                      responses: {
+                        200: {
+                          description: "Success",
+                          schema: Joi.object({}).label('json')
+                        }
+                      }
+                    }
+                },
                 validate: {
                     payload: Joi.object({
                         xml: Joi.string().required()
-                    })
+                    }).label('XMLdata')
                 }
             },
             handler: function (request, h) {
@@ -26,13 +36,15 @@ exports.plugin = {
                 }
                 const parser = new XMLParser();
                 let jsonObj = parser.parse(request.payload.xml);
-                return h.response(JSON.stringify(jsonObj)).code(200);
+                return h.response(jsonObj).code(200);
             }
+            
         });    
+ 
 
-        server.route({
+/*        server.route({
             method: 'POST',
-            path: '/api/v1/parse/csv',
+            path: '/api/v1/parseCSV',
             options: {
                 description: 'Get todo',
                 notes: 'Returns a todo item by the id passed in the path',
@@ -59,6 +71,7 @@ exports.plugin = {
                 return h.response(request.payload);
             }
         });    
+        */
 
 
     }
