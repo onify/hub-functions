@@ -56,28 +56,3 @@ exports.plugin = {
  
     }
 };
-
-
-// https://github.com/theophilusx/ssh2-sftp-client
-
-/*
-let sftp = new Client();
-
-let remotePath = '/Bravida/SE/TEST/Catalogue/Leasing_SE.xml';
-
-sftp.connect({ // options
-  host: process.env.BRAVIDA_SFTP_SERVER,
-  //port: '8080',
-  username: process.env.BRAVIDA_SFTP_USERNAME,
-  password: process.env.BRAVIDA_SFTP_PASSWORD
-}).then(() => {
-  return sftp.get(remotePath);
-}).then(data => {
-  let conent = data.toString();
-  console.log(conent);  
-  sftp.end();
-}).catch(err => {
-  console.log(err, 'catch error');
-});
-
-*/
