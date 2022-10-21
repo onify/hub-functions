@@ -2,12 +2,11 @@ name: Build latest
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build-latest:
     name: Build latest
-    needs: test
     runs-on: ubuntu-latest
     env:
       PROJECT_ID: ${{ secrets.GCP_BUILD_PROJECT_ID }}
