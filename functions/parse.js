@@ -30,5 +30,36 @@ exports.plugin = {
             }
         });    
 
+        server.route({
+            method: 'POST',
+            path: '/api/v1/parse/csv',
+            options: {
+                description: 'Get todo',
+                notes: 'Returns a todo item by the id passed in the path',
+                tags: ['api', 'parse'], 
+                payload: {
+                    maxBytes: 1048576 * 100,
+                    output: 'stream',
+                    parse: true,
+                    timeout: 60000,
+                    multipart: true,
+                    allow: 'multipart/form-data',
+                }
+            },
+            handler: function (request, h) {
+                //console.log(request.payload.somefile); 
+                console.log(request.payload.somefile.hapi); 
+                console.log(request.payload.somefile._data.toString()); 
+                console.log(request.payload.somefile.hapi.headers['content-type']); 
+                console.log(request.payload.somefile.hapi.filename); 
+                //_encoding
+
+                //console.log(request.payload.image);
+                //console.log(request.payload.imageName);
+                return h.response(request.payload);
+            }
+        });    
+
+
     }
 };

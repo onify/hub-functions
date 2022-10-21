@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?><ns0:ProductCatalog xmlns:ns0="rrn:org.xcbl:schemas/xcbl/v4_0/catalog/v1_0/catalog.xsd" xmlns:core="rrn:org.xcbl:schemas/xcbl/v4_0/core/core.xsd">
+  <ns0:CatalogHeader>
+    <ns0:CatalogID>-2022-10-21</ns0:CatalogID>
+    <ns0:CatalogDate>2022-10-21T00:00:00</ns0:CatalogDate>
+    <ns0:CatalogProvider>
+      <ns0:Party>
+        <core:PartyID>
+          <core:Ident></core:Ident>
+        </core:PartyID>
+        <core:PrimaryContact>
+          <core:ContactID>
+            <core:Ident>edi@dustin.se</core:Ident>
+          </core:ContactID>
+          <core:ContactName>EDI</core:ContactName>
+        </core:PrimaryContact>
+      </ns0:Party>
+    </ns0:CatalogProvider>
+    <ns0:CatalogPrettyName>Dustin Catalog</ns0:CatalogPrettyName>
+    <ns0:PricingInformation>
+      <ns0:PriceCatalog>
+        <ns0:PriceCatalogID></ns0:PriceCatalogID>
+        <ns0:ValidFrom>2022-10-21T00:00:00</ns0:ValidFrom>
+      </ns0:PriceCatalog>
+    </ns0:PricingInformation>
+    <ns0:SupplierAccountInformation>
+      <ns0:SupplierAccount>
+        <ns0:SupplierAccountID></ns0:SupplierAccountID>
+        <ns0:BuyerIdentifier>
+          <core:Ident></core:Ident>
+        </ns0:BuyerIdentifier>
+        <ns0:PriceCatalogIDRef></ns0:PriceCatalogIDRef>
+      </ns0:SupplierAccount>
+    </ns0:SupplierAccountInformation>
+    <ns0:ValidFrom>2022-10-21T00:00:00</ns0:ValidFrom>
+    <ns0:CatalogVersion>1</ns0:CatalogVersion>
+    <ns0:ShortDescription xml:lang="en">Dustin</ns0:ShortDescription>
+  </ns0:CatalogHeader>
+  <ns0:CatalogData>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011247155</ns0:ProductID>
+      <ns0:BaseProductNumber>5011247155</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011247155/fusion-case-for-samsung-a52-transparentblack</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001430241/cirafon-fusion-case-for-samsung-a52-transparentblack-samsung-galaxy-a52-svart.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphonetillbehör/Fodral &amp; skal/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191600</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Cirafon Fusion Case For Samsung A52 Transparent/black Samsung Galaxy A52 Svart</ns0:ProductName>
+      <ns0:Manufacturer>Cirafon</ns0:Manufacturer>
+      <ns0:ManuPartNumber>CM610-FC</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Skyddande skal för din Samsung</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Cirafon Fusion Case For Samsung A52 Transparent/black Samsung Galaxy A52 Svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011247155</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011247155</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>81.45</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Cirafon Fusion Case For Samsung A52 Transparent/black Samsung Galaxy A52 Svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011202909</ns0:ProductID>
+      <ns0:BaseProductNumber>5011202909</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011202909/copenhagen-slim</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001003254861/dbramante1928-copenhagen-slim-iphone-12-iphone-12-pro-svart.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/iPhone tillbehör/Fodral &amp; skal/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191600</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">dbramante1928 Copenhagen Slim iPhone 12, iPhone 12 Pro Svart</ns0:ProductName>
+      <ns0:Manufacturer>dbramante1928</ns0:Manufacturer>
+      <ns0:ManuPartNumber>CS61GTBL1172</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Transforming your phone into that statement accessory, that is much more than just a stylish, slim &amp; protective wallet case, the Copenhagen Slim is handcrafted from premium, full-grain leather that will develop a beautiful patina with use.</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">dbramante1928 Copenhagen Slim iPhone 12, iPhone 12 Pro Svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011202909</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011202909</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>328.96</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>dbramante1928 Copenhagen Slim iPhone 12, iPhone 12 Pro Svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011271438</ns0:ProductID>
+      <ns0:BaseProductNumber>5011271438</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011271438/greenland-100-atervunnen-plast</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001534046/dbramante1928-greenland-100-%c3%a5tervunnen-plast-samsung-galaxy-s22-nattsvart.png</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphonetillbehör/Fodral &amp; skal/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191600</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">dbramante1928 Greenland 100% Återvunnen Plast Samsung Galaxy S22 Nattsvart</ns0:ProductName>
+      <ns0:Manufacturer>dbramante1928</ns0:Manufacturer>
+      <ns0:ManuPartNumber>GLSSNIBL1445</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Tillverkat av 100% återvunnen plastMotsvarande återvunnen materialvikt för en 2 liters plastflaska används för att göra ett skalEtt tunt, stötskyddande skal med bra grepp och lättryckta knappar.Kompatibelt med trådlös laddning.Upphöjta kanter skyddar kamera och skärm.</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">dbramante1928 Greenland 100% Återvunnen Plast Samsung Galaxy S22 Nattsvart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011271438</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011271438</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>99.00</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>dbramante1928 Greenland 100% Återvunnen Plast Samsung Galaxy S22 Nattsvart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011259853</ns0:ProductID>
+      <ns0:BaseProductNumber>5011259853</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011259853/silicone-case</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001492621/cirafon-silicone-case-iphone-13-svart.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/iPhone tillbehör/Fodral &amp; skal/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191600</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Cirafon Silicone Case iPhone 13 Svart</ns0:ProductName>
+      <ns0:Manufacturer>Cirafon</ns0:Manufacturer>
+      <ns0:ManuPartNumber>CM711-SL</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Skyddande skal för din Iphone</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Cirafon Silicone Case iPhone 13 Svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011259853</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011259853</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>81.50</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Cirafon Silicone Case iPhone 13 Svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011247164</ns0:ProductID>
+      <ns0:BaseProductNumber>5011247164</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011247164/silicone-case-for-iphone-1212pro-black</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001430146/cirafon-silicone-case-for-iphone-1212pro-black-iphone-12-iphone-12-pro-svart.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/iPhone tillbehör/Fodral &amp; skal/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191600</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Cirafon Silicone Case For Iphone 12/12Pro Black iPhone 12, iPhone 12 Pro Svart</ns0:ProductName>
+      <ns0:Manufacturer>Cirafon</ns0:Manufacturer>
+      <ns0:ManuPartNumber>CM596-SIL</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Skyddande skal för din Iphone</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Cirafon Silicone Case For Iphone 12/12Pro Black iPhone 12, iPhone 12 Pro Svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011247164</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011247164</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>103.75</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Cirafon Silicone Case For Iphone 12/12Pro Black iPhone 12, iPhone 12 Pro Svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011279008</ns0:ProductID>
+      <ns0:BaseProductNumber>5011279008</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011279008/bravida-samsung-a52s-5g-ee-128gb-leasing-se-kit</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001546905/samsung-bravida-samsung-a52s-5g-ee-128gb-leasing-se-kit-128gb-dual-sim-fantastisk-svart.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphones/Android/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191501</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Samsung BRAVIDA SAMSUNG A52S 5G EE 128GB LEASING SE #KIT 128GB Dual-SIM Fantastisk svart</ns0:ProductName>
+      <ns0:Manufacturer>Samsung</ns0:Manufacturer>
+      <ns0:ManuPartNumber>5011279008</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">6.5 tum Infinity-O sAMOLED Display med 120 Hz för en uppslukande upplevelseFem kameror och optisk bildstabilisering låter dig ta bilderna du villExtra uthålligt batteri och snabbladdning för kort väntetidDamm- och vattentålig (IP67) med en behaglig och modern design</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Samsung BRAVIDA SAMSUNG A52S 5G EE 128GB LEASING SE #KIT 128GB Dual-SIM Fantastisk svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011279008</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011279008</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>3873.85</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Samsung BRAVIDA SAMSUNG A52S 5G EE 128GB LEASING SE #KIT 128GB Dual-SIM Fantastisk svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011293094</ns0:ProductID>
+      <ns0:BaseProductNumber>5011293094</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011293094/bravida-samsung-s22-128gb-black-leasing-managed-kit</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001697121/samsung-bravida-samsung-s22-128gb-black-leasing-managed-kit-128gb-dual-sim-fantomsvart.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphones/Android/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191501</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Samsung Bravida Samsung S22 128Gb Black Leasing #Managed #Kit 128GB Dual-SIM Fantomsvart</ns0:ProductName>
+      <ns0:Manufacturer>Samsung</ns0:Manufacturer>
+      <ns0:ManuPartNumber>5011293094</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Mobilen som gör varje dag episkNightography-kameraBatteri som räcker längre än en dagSamsungs snabbaste processor hittills</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Samsung Bravida Samsung S22 128Gb Black Leasing #Managed #Kit 128GB Dual-SIM Fantomsvart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011293094</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011293094</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>8118.19</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Samsung Bravida Samsung S22 128Gb Black Leasing #Managed #Kit 128GB Dual-SIM Fantomsvart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011277984</ns0:ProductID>
+      <ns0:BaseProductNumber>5011277984</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011277984/bravida-samsung-s21-5g-128gb-leasing-se-kit</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001543755/samsung-bravida-samsung-s21-5g-128gb-leasing-se-kit-128gb-dual-sim-fantomgr%c3%a5.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphones/Android/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191501</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Samsung BRAVIDA SAMSUNG S21 5G 128GB LEASING SE #KIT 128GB Dual-SIM Fantomgrå</ns0:ProductName>
+      <ns0:Manufacturer>Samsung</ns0:Manufacturer>
+      <ns0:ManuPartNumber>5011277984</ns0:ManuPartNumber>
+      <ns0:LeadTime>14</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Gör varje dag mer episk120Hz-skärmen revolutionerar känslanDYNAMIC AMOLED 2XEye Comfort-skyddCorning Gorilla Glass Victus - ett säkert genombrottTa episka stillbilder med 8K-videoEn enda tagning och du fångar ögonblicketStadig actionPro-Grade-Kamera - allt handlar om detaljernaPorträtt - Instagram-redo direktNattläge - natten är din30X Space Zoom - inget är för långt bortaSelfie - visa din bästa sidaPrestanda - ingen anledning att slutaIntelligent batteri - räcker över ett dygnMöt det snabbaste Galaxy-chipet någonsinSäkerhet - du väljer vad du vill delaFör betydligt fler minnesvärda ögonblickVattentålighet - lite vatten - visstDual SIM låter dig koppla två olika abonnemang till din mobilEn spelupplevelse på högsta nivåFörbättrad Game BoosterRedo för en större skärmLänka till Windows - dina favoritappar - nu även på datornGalaxy smarttag - tagga det - hitta det</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Samsung BRAVIDA SAMSUNG S21 5G 128GB LEASING SE #KIT 128GB Dual-SIM Fantomgrå</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011277984</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011277984</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>7035.24</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Samsung BRAVIDA SAMSUNG S21 5G 128GB LEASING SE #KIT 128GB Dual-SIM Fantomgrå</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011291500</ns0:ProductID>
+      <ns0:BaseProductNumber>5011291500</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011291500/bravida-iphone-13-128gb-white-leasing-kit</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001265935/apple-bravida-iphone-13-128gb-white-leasing-kit-128gb-stj%c3%a4rnglans.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphones/iPhone/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191501</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Apple Bravida Iphone 13 128Gb White Leasing #Kit 128GB Stjärnglans</ns0:ProductName>
+      <ns0:Manufacturer>Apple</ns0:Manufacturer>
+      <ns0:ManuPartNumber>5011291500</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">.</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Apple Bravida Iphone 13 128Gb White Leasing #Kit 128GB Stjärnglans</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011291500</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011291500</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>8315.96</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Apple Bravida Iphone 13 128Gb White Leasing #Kit 128GB Stjärnglans</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011247156</ns0:ProductID>
+      <ns0:BaseProductNumber>5011247156</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011247156/fusion-case-samsung-galaxy-s21-transparentblack</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001430204/cirafon-fusion-case-samsung-galaxy-s21-transparentblack-samsung-galaxy-s21-svart.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphonetillbehör/Fodral &amp; skal/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191600</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Cirafon Fusion Case Samsung Galaxy S21 Transparent/black Samsung Galaxy S21 Svart</ns0:ProductName>
+      <ns0:Manufacturer>Cirafon</ns0:Manufacturer>
+      <ns0:ManuPartNumber>CM607-FC</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Skyddande skal för din Samsung</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Cirafon Fusion Case Samsung Galaxy S21 Transparent/black Samsung Galaxy S21 Svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011247156</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011247156</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>81.45</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Cirafon Fusion Case Samsung Galaxy S21 Transparent/black Samsung Galaxy S21 Svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011254895</ns0:ProductID>
+      <ns0:BaseProductNumber>5011254895</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011254895/copenhagen-slim</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001471088/dbramante1928-copenhagen-slim-iphone-13-svart.png</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/iPhone tillbehör/Fodral &amp; skal/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191600</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">dbramante1928 Copenhagen Slim iPhone 13 Svart</ns0:ProductName>
+      <ns0:Manufacturer>dbramante1928</ns0:Manufacturer>
+      <ns0:ManuPartNumber>CS61GTBL1325</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Genom vägledning av WWF är dbramante1928 ett klimatpositivt företagTillverkat för hand av hållbart framtaget full-grainläder - en biprodukt som istället för spill går till produktionKreditkortsficka med plast för tre kort samt en sektion för sedlarSkyddande plånboksfodral med praktiskt magnetlås på sidanKompatibelt med trådlös laddningRFID-skydd</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">dbramante1928 Copenhagen Slim iPhone 13 Svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011254895</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011254895</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>219.00</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>dbramante1928 Copenhagen Slim iPhone 13 Svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011247161</ns0:ProductID>
+      <ns0:BaseProductNumber>5011247161</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011247161/silicone-case-samsung-galaxy-s21-black</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001430183/cirafon-silicone-case-samsung-galaxy-s21-black-samsung-galaxy-s21-svart.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphonetillbehör/Fodral &amp; skal/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191600</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Cirafon Silicone Case Samsung Galaxy S21 Black Samsung Galaxy S21 Svart</ns0:ProductName>
+      <ns0:Manufacturer>Cirafon</ns0:Manufacturer>
+      <ns0:ManuPartNumber>CM606-SIL</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Skyddande skal för din Samsung</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Cirafon Silicone Case Samsung Galaxy S21 Black Samsung Galaxy S21 Svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011247161</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011247161</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>103.75</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Cirafon Silicone Case Samsung Galaxy S21 Black Samsung Galaxy S21 Svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011293095</ns0:ProductID>
+      <ns0:BaseProductNumber>5011293095</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011293095/bravida-samsung-s22-128gb-white-leasing-managed-kit</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001536376/samsung-bravida-samsung-s22-128gb-white-leasing-managed-kit-128gb-dual-sim-vit.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphones/Android/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191501</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Samsung Bravida Samsung S22 128Gb White Leasing #Managed #Kit 128GB Dual-SIM Vit</ns0:ProductName>
+      <ns0:Manufacturer>Samsung</ns0:Manufacturer>
+      <ns0:ManuPartNumber>5011293095</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">.</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Samsung Bravida Samsung S22 128Gb White Leasing #Managed #Kit 128GB Dual-SIM Vit</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011293095</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011293095</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>8097.76</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Samsung Bravida Samsung S22 128Gb White Leasing #Managed #Kit 128GB Dual-SIM Vit</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011277986</ns0:ProductID>
+      <ns0:BaseProductNumber>5011277986</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011277986/bravida-iphone-13-128gb-leasing-se-kit</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001543768/apple-bravida-iphone-13-128gb-leasing-se-kit-128gb-midnatt.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphones/iPhone/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191501</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Apple BRAVIDA IPHONE 13 128GB LEASING SE #KIT 128GB Midnatt</ns0:ProductName>
+      <ns0:Manufacturer>Apple</ns0:Manufacturer>
+      <ns0:ManuPartNumber>5011277986</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Apples mest avancerade dubbel­kamera­system någonsinTålig - från alla håll och kanterEtt blixtsnabbt chip som lämnar de andra bakom sigMycket längre batteritid - alla dagar i veckanDin nya superkraftCeramic Shield tål mer än alla smartphoneglasTålig och stilren med raka kanterDen nya kameran med ultravidvinkel tar fram fler detaljer i mörka partier av bildenDen nya kameran med vidvinkel släpper in 47 procent mer ljus för bättre bilder och videorNy optisk bild­stabilisering med sensor­förskjutning gör att dina bilder blir stadiga även när din hand inte är detDu behöver ingen filmutbildning - det har iPhone redan fåttCinematiskt läge filmar i Dolby Vision HDRTa en riktigt bra bild utan att lyfta ett fingerNattläge känner av när du fotograferar i svagt ljus och tar ljusa, skarpa bilder med fantastiska färgerPorträttläge gör bakgrunden effektfullt suddig och fokuserar på motivet, du kan experimentera med sex olika ljuseffekter genom att svepa med fingretSmart HDR 4 känner nu igen upp till fyra personer i en bild och kan optimera såväl kontrast och ljus som hudtoner hos var och en - på så sätt kommer alla till sin rättDeep Fusion aktiveras i medelstarkt till svagt ljus - den analyserar flera olika exponeringar, pixel för pixel, och kan på så sätt lyfta fram subtila texturer, mönster och detaljerKameran med ultravidvinkel ger dig ett brett synfält även när du står väldigt nära motivet - då kan du fånga mer på bilden utan att backaMinnen är auto­matiska bildspel som skapas utifrån minnesvärda ögonblick i ditt bildbibliotek - du kan anpassa dem efter egen smak och välja ett soundtrack från musikbiblioteketEn kamera som har koll på din stilEn skärmkamera som inte backar för någotTrueDepth-kameran har alla de senaste funktionerna som finns i kamerorna på baksidanA15 Bionic och TrueDepth-kameran har också Face ID, den säkraste ansiktsidentifieringen i en smartphoneUpp till 2,5 timmar längre batteritid på iPhone 13Upp till 50 procent snabbare processor än konkurrenternasUpp till 30 procent snabbare grafik än konkurrenternasFler 5G-band för 5G-hastighet på fler ställen</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Apple BRAVIDA IPHONE 13 128GB LEASING SE #KIT 128GB Midnatt</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011277986</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011277986</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>8619.13</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Apple BRAVIDA IPHONE 13 128GB LEASING SE #KIT 128GB Midnatt</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011277985</ns0:ProductID>
+      <ns0:BaseProductNumber>5011277985</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011277985/bravida-iphone-12-128gb-leasing-se-kit</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001543766/apple-bravida-iphone-12-128gb-leasing-se-kit-128gb-svart.jpg</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphones/iPhone/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191501</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">Apple BRAVIDA IPHONE 12 128GB LEASING SE #KIT 128GB Svart</ns0:ProductName>
+      <ns0:Manufacturer>Apple</ns0:Manufacturer>
+      <ns0:ManuPartNumber>5011277985</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Mycket mer än mycket snabbareEn av världens minsta, tunnaste och lättaste 5G-mobilCeramic Shield - tuffare än alla smart­phone-glas, helt klartKanter av flygindustriklassat aluminiumH2OK - tål skvätt och stänk ännu bättreiPhone tar fram det bästa ur 5G11 biljoner beräkningar, varje sekundSuper Retina XDR-skärm - OLED, fångar blickenDubbel­kamera­system - se det från den mörka sidanNu blir kvällarna så mycket ljusareDu ser ju själv, ingenting slår porträttlägeVideo, mörker, kamera, tagningBoom - plötsligt äger du en filmstudioDen första kameran någonsin som spelar in i Dolby VisionSelfies i nattläge - kvällen är dinInbyggd integritetApple minskade sitt koldioxid­avtryck genom att tänka mindreMinskningen av koldioxidutsläpp motsvarar 450 000 färre bilar på vägarna under ett årFörstärkt verklighetFler bilder, mindre fördröjningTvå nummer på en telefonSpatial ljuduppspelning med Dolby AtmosÅtervunna sällsynta jordartsmetaller i magneterna</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">Apple BRAVIDA IPHONE 12 128GB LEASING SE #KIT 128GB Svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011277985</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011277985</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>8065.81</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>Apple BRAVIDA IPHONE 12 128GB LEASING SE #KIT 128GB Svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+    <ns0:Product>
+      <ns0:ProductID Type="Buyer">5011271413</ns0:ProductID>
+      <ns0:BaseProductNumber>5011271413</ns0:BaseProductNumber>
+      <ns0:ExternalItemRef>
+        <ns0:CatalogProviderIDRef>https://www.dustin.se/product/5011271413/copenhagen-slim</ns0:CatalogProviderIDRef>
+        <ns0:CatalogIDRef>https://cf-images.dustin.eu/cdn-cgi/image/format=auto,quality=75,width=500,fit=contain/image/d200001001533870/dbramante1928-copenhagen-slim-samsung-galaxy-s22-svart.png</ns0:CatalogIDRef>
+        <ns0:ProductIDRef>Hårdvara/Telefoner &amp; GPS/Smartphonetillbehör/Fodral &amp; skal/</ns0:ProductIDRef>
+      </ns0:ExternalItemRef>
+      <ns0:ProductIDStandard>43191600</ns0:ProductIDStandard>
+      <ns0:ProductName xml:lang="en">dbramante1928 Copenhagen Slim Samsung Galaxy S22 Svart</ns0:ProductName>
+      <ns0:Manufacturer>dbramante1928</ns0:Manufacturer>
+      <ns0:ManuPartNumber>CSSSGTBL1434</ns0:ManuPartNumber>
+      <ns0:LeadTime>1</ns0:LeadTime>
+      <ns0:ShortDescription xml:lang="en">Genom vägledning av WWF är dbramante1928 ett klimatpositivt företagTillverkat för hand av hållbart framtaget full-grainläder - en biprodukt som istället för spill går till produktionKreditkortsficka med plast för tre kort samt en sektion för sedlarSkyddande plånboksfodral med praktiskt magnetlås på sidanKompatibelt med trådlös laddning</ns0:ShortDescription>
+      <ns0:LongDescription xml:lang="en" DescriptionPurpose="ProductCatalog/CatalogData/Product/LongDescription/@DescriptionPurpose">dbramante1928 Copenhagen Slim Samsung Galaxy S22 Svart</ns0:LongDescription>
+    </ns0:Product>
+    <ns0:Pricing>
+      <ns0:ProductIDRef>5011271413</ns0:ProductIDRef>
+      <ns0:PriceCatalogIDRef>5011271413</ns0:PriceCatalogIDRef>
+      <ns0:ProductPrice>
+        <ns0:Amount>278.60</ns0:Amount>
+        <ns0:PriceType />
+        <ns0:Currency>
+          <core:CurrencyCoded>SEK</core:CurrencyCoded>
+        </ns0:Currency>
+        <ns0:ShortDescription>dbramante1928 Copenhagen Slim Samsung Galaxy S22 Svart</ns0:ShortDescription>
+      </ns0:ProductPrice>
+    </ns0:Pricing>
+  </ns0:CatalogData>
+</ns0:ProductCatalog>
