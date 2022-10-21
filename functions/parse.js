@@ -3,7 +3,6 @@ const Joi = require('joi');
 const {XMLParser, XMLValidator} = require('fast-xml-parser');
 
 exports.plugin = {
-    //pkg: require('./package.json'),
     name: 'parse',
     register: async function (server, options) {
 

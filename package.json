@@ -1,6 +1,6 @@
 {
   "name": "hub-functions",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Onify Hub Functions",
   "main": "index.js",
   "scripts": {
@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/onify/hub-functions.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Onify",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/onify/hub-functions/issues"
   },
