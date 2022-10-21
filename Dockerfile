@@ -14,9 +14,7 @@ COPY ./server.js ./
 COPY ./package-lock.json ./
 COPY ./package.json ./
 
-# Install
 RUN npm ci
-
 RUN npm prune --production
 
 ENV NODE_ENV=production
