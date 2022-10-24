@@ -20,7 +20,7 @@ const init = async () => {
     const swaggerOptions = {
         info: {
                 title: 'Onify Hub Functions',
-                //description: '',
+                description: 'Server side functions for Onify Hub',
                 version: Pack.version,
             },
             basePath: "/api/v1",
@@ -41,7 +41,10 @@ const init = async () => {
             return console.log('Unable to scan directory: ' + err);
         } 
         files.forEach(function (file) {
-            server.register(require(`${functionsPath}/${file}`));
+            if (!file.startsWith('_')) { // exclude template files
+                console.log(`Register function file ${file}...`);
+                server.register(require(`${functionsPath}/${file}`));
+            }
         });
     });
 

@@ -19,7 +19,7 @@ exports.plugin = {
                       responses: {
                         200: {
                           description: "Success",
-                          schema: Joi.object({}).label('json')
+                          schema: Joi.object().label('json')
                         }
                       }
                     }
