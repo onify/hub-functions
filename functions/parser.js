@@ -25,7 +25,8 @@ exports.plugin = {
                 },
                 validate: {
                     payload: Joi.object({
-                        xml: Joi.string().required()
+                        xml: Joi.string().required(),
+                        ignoreAttributes: Joi.boolean().required().default(true)
                     }).label('XMLdata')
                 }
             },
@@ -34,7 +35,10 @@ exports.plugin = {
                 if (resultValidator != true) {
                     return h.response(resultValidator).code(500);
                 }
-                const parser = new XMLParser();
+                const options = {
+                    ignoreAttributes : request.payload.ignoreAttributes
+                };
+                const parser = new XMLParser(options);
                 let jsonObj = parser.parse(request.payload.xml);
                 return h.response(jsonObj).code(200);
             }
