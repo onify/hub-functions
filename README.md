@@ -9,9 +9,9 @@
 ## Functions
 
 * [hello](/functions/hello.js) - Example function script 
-* [parser](/functions/hello.js) - Parser functions (eg. XML)
-* [sftp](/functions/hello.js) - SFTP functions (WIP)
-* [mssql](/functions/hello.js) - MSSQL functions (WIP)
+* [parser](/functions/parser.js) - Parser functions (eg. XML)
+* [sftp](/functions/sftp.js) - SFTP functions (WIP)
+* [mssql](/functions/mssql.js) - MSSQL functions (WIP)
 
 ### Building functions
 
