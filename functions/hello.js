@@ -75,7 +75,7 @@ exports.plugin = {
                         name: Joi.string().description('What is your name?')
                     }),
                     payload: Joi.object({
-                        comment: Joi.string().description('Say something more?')
+                        comment: Joi.string().optional().description('Say something more?')
                     })
                 }
             },

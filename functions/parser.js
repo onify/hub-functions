@@ -17,7 +17,7 @@ exports.plugin = {
                 validate: {
                     payload: Joi.object({
                         xml: Joi.string().required(),
-                        ignoreAttributes: Joi.boolean().required().default(true)
+                        ignoreAttributes: Joi.boolean().required().optional().default(true)
                     })
                 }
             },

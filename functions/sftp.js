@@ -18,7 +18,7 @@ exports.plugin = {
                   query: Joi.object({
                     filename: Joi.string().required(),
                     host: Joi.string().required(),
-                    port: Joi.number().required().default('22'),
+                    port: Joi.number().required().default('22').optional(),
                     username: Joi.string().required(),
                     password: Joi.string().required(),
                   })

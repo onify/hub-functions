@@ -23,8 +23,8 @@ exports.plugin = {
                     //    codes: Joi.array().items(Joi.string().required()).required().description('UNSPSC® codes')
                     //}),
                     query: Joi.object({
-                        includeMeta: Joi.boolean().default(true).description('Includes Segment, Family, Class'),
-                        deepSearch: Joi.boolean().default(true).description('Also search for code in Segment, Family, Class. Otherwise only Commodity.')
+                        includeMeta: Joi.boolean().default(true).optional().description('Includes Segment, Family, Class'),
+                        deepSearch: Joi.boolean().default(true).optional().description('Also search for code in Segment, Family, Class. Otherwise only Commodity.')
                     })
                 }
             },
@@ -79,8 +79,8 @@ exports.plugin = {
                         code: Joi.string().description('UNSPSC® code')
                     }),
                     query: Joi.object({
-                        includeMeta: Joi.boolean().default(true).description('Includes Segment, Family, Class'),
-                        deepSearch: Joi.boolean().default(true).description('Also search for code in Segment, Family, Class. Otherwise only Commodity.')
+                        includeMeta: Joi.boolean().default(true).optional().description('Includes Segment, Family, Class'),
+                        deepSearch: Joi.boolean().default(true).optional().description('Also search for code in Segment, Family, Class. Otherwise only Commodity.')
                     })
                 }
             },
