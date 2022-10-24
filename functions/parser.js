@@ -1,6 +1,7 @@
 'use strict';
 const Joi = require('joi');
 const {XMLParser, XMLValidator} = require('fast-xml-parser');
+const logger = require('../lib/logger.js'); 
 
 exports.plugin = {
     name: 'parser',
@@ -13,24 +14,15 @@ exports.plugin = {
                 description: 'Parse XML content to JSON object',
                 notes: 'Parses XML content and returns a JSON object',
                 tags: ['api', 'parser'], 
-                plugins: {
-                    'hapi-swagger': {
-                      responses: {
-                        200: {
-                          description: "Success",
-                          schema: Joi.object({}).label('json')
-                        }
-                      }
-                    }
-                },
                 validate: {
                     payload: Joi.object({
                         xml: Joi.string().required(),
                         ignoreAttributes: Joi.boolean().required().default(true)
-                    }).label('XMLdata')
+                    })
                 }
             },
             handler: function (request, h) {
+                logger.debug(`Request ${(request.method).toUpperCase()} ${request.path}`);
                 const resultValidator = XMLValidator.validate(request.payload.xml);
                 if (resultValidator != true) {
                     return h.response(resultValidator).code(500);

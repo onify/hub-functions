@@ -1,6 +1,7 @@
 'use strict';
 const Joi = require('joi');
 let Client = require('ssh2-sftp-client');
+const logger = require('../lib/logger.js'); 
 
 exports.plugin = {
     name: 'sftp',
@@ -10,19 +11,9 @@ exports.plugin = {
             method: 'GET',
             path: '/api/v1/sftp/readfile',
             options: {
-                description: 'Read file from STFP server',
-                notes: 'Reads file from SFTP server and returns raw content.',
-                tags: ['api', 'sftp'], 
-                plugins: {
-                  'hapi-swagger': {
-                    responses: {
-                      200: {
-                        description: "Success",
-                        schema: Joi.object().label('json')
-                      }
-                    }
-                  }
-              },
+              description: 'Read file from STFP server',
+              notes: 'Reads file from SFTP server and returns raw content.',
+              tags: ['api', 'sftp'],
               validate: {
                   query: Joi.object({
                     filename: Joi.string().required(),
@@ -34,6 +25,7 @@ exports.plugin = {
                 }
             },
             handler: function (request, h) {
+              logger.debug(`Request ${(request.method).toUpperCase()} ${request.path}`);
               let sftp = new Client();
               sftp.connect({ // options
                 host: request.query.host,

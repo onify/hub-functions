@@ -8,10 +8,11 @@
 
 ## Functions
 
-* [hello](/functions/hello.js) - Example function script 
+* [hello](/functions/hello.js) - Example function(s)
 * [parser](/functions/parser.js) - Parser functions (eg. XML)
 * [sftp](/functions/sftp.js) - SFTP functions (WIP)
 * [mssql](/functions/mssql.js) - MSSQL functions (WIP)
+* [unspsc](/functions/unspsc.js) - UNSPSC® functions (WIP)
 
 ### Building functions
 
@@ -26,6 +27,12 @@ Please store data-files in the `./data` folder.
 * Community/forum: https://support.onify.co/discuss
 * Documentation: https://support.onify.co/docs
 * Support and SLA: https://support.onify.co/docs/get-support
+
+## TODO
+
+* Feature tests
+* Improve structure
+* More functions :-)
 
 ## License
 

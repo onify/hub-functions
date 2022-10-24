@@ -7,6 +7,7 @@ const Vision = require('@hapi/vision');
 const Joi = require('joi');
 const Pack = require('./package');
 const fs = require('fs');
+const logger = require('./lib/logger.js'); 
 
 const functionsPath = './functions';
 
@@ -38,23 +39,24 @@ const init = async () => {
 
     fs.readdir(functionsPath, function (err, files) {
         if (err) {
-            return console.log('Unable to scan directory: ' + err);
+            logger.error(`Unable to scan directory: ${err}`);
+            process.exit(1);
         } 
         files.forEach(function (file) {
             if (!file.startsWith('_')) { // exclude template files
-                console.log(`Register function file ${file}...`);
                 server.register(require(`${functionsPath}/${file}`));
+                logger.info(`Registered function ${file}`);
             }
         });
     });
 
     await server.start();
-    console.log('Server running on %s', server.info.uri);
+    
+    logger.info(`Server running on ${server.info.uri}`);
 };
 
 process.on('unhandledRejection', (err) => {
-
-    console.log(err);
+    logger.error(err);
     process.exit(1);
 });
 

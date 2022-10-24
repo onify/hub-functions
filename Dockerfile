@@ -10,6 +10,8 @@ RUN mkdir -p /usr/app
 WORKDIR /usr/app
 
 COPY ./functions ./functions
+COPY ./data ./data
+COPY ./lib ./lib
 COPY ./server.js ./
 COPY ./package-lock.json ./
 COPY ./package.json ./

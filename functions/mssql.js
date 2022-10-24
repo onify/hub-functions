@@ -2,6 +2,7 @@
 'use strict';
 const Joi = require('joi');
 const sql = require('mssql');
+const logger = require('../lib/logger.js'); 
 
 exports.plugin = {
     name: 'mssql',
@@ -14,16 +15,6 @@ exports.plugin = {
                 description: 'Microsoft SQL Server Query',
                 notes: 'Query Microsoft SQL Server',
                 tags: ['api', 'mssql'], 
-                plugins: {
-                    'hapi-swagger': {
-                      responses: {
-                        200: {
-                          description: "Success",
-                          schema: Joi.object().label('json')
-                        }
-                      }
-                    }
-                },
                 validate: {
                     query: Joi.object({
                       server: Joi.string().required(),
@@ -38,7 +29,7 @@ exports.plugin = {
                   }
               },
             handler: function (request, h) {
-                
+              logger.debug(`Request ${(request.method).toUpperCase()} ${request.path}`);
                 const sqlConfig = {
                     user: request.query.username,
                     password: request.query.password,
