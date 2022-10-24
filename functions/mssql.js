@@ -19,9 +19,9 @@ exports.plugin = {
                     query: Joi.object({
                       server: Joi.string().required(),
                       query: Joi.string().required(),
-                      port: Joi.number().required().default('1433'),
-                      encrypt: Joi.boolean().required().default(true),
-                      trustServerCertificate: Joi.boolean().required().default(false),
+                      port: Joi.number().required().default('1433').optional(),
+                      encrypt: Joi.boolean().required().default(false).optional(),
+                      trustServerCertificate: Joi.boolean().required().default(false).optional(),
                       database: Joi.string().required(),
                       username: Joi.string().required(),
                       password: Joi.string().required(),
