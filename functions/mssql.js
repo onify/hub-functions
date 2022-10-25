@@ -4,25 +4,6 @@ const Joi = require('joi');
 const sql = require('mssql');
 const logger = require('../lib/logger.js'); 
 
- async function sqlQuery(sqlConfig, query) {
-    await sql.connect(sqlConfig).then(pool => {
-      return pool.request().query(query);
-    }).then(result => {
-      return {
-        response: result.recordset,
-        code: 200
-      };
-    }).catch(err => {
-      logger.error(err.message);
-      return {
-        response: {
-          error: err.message   
-        },
-        code: 500
-      };
-    });
-}
-
 exports.plugin = {
     name: 'mssql',
     register: async function (server, options) {
@@ -47,7 +28,7 @@ exports.plugin = {
                     })
                   }
               },
-            handler: function (request, h) {
+            handler: async function (request, h) {
               logger.debug(`Request ${(request.method).toUpperCase()} ${request.path}`);
                 const sqlConfig = {
                     user: request.query.username,
@@ -59,10 +40,24 @@ exports.plugin = {
                       trustServerCertificate: request.query.trustServerCertificate
                     }
                 }
-                let r = sqlQuery(sqlConfig, request.query.query);  
+                let r = await sql.connect(sqlConfig).then(pool => {
+                  return pool.request().query(request.query.query);
+                }).then(result => {
+                  return {
+                    response: result.recordset,
+                    code: 200
+                  };
+                }).catch(err => {
+                  logger.error(err.message);
+                  return {
+                    response: {
+                      error: err.message   
+                    },
+                    code: 500
+                  };
+                });
                 return h.response(r.response).code(r.code);
             }
-            
         });    
  
     }

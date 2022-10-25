@@ -19,9 +19,6 @@ exports.plugin = {
                 tags: ['api', 'unspsc'], 
                 validate: {
                     payload: Joi.array().items(Joi.string()).required().description('UNSPSC® codes'),
-                    //payload: Joi.object({
-                    //    codes: Joi.array().items(Joi.string().required()).required().description('UNSPSC® codes')
-                    //}),
                     query: Joi.object({
                         includeMeta: Joi.boolean().default(true).optional().description('Includes Segment, Family, Class'),
                         deepSearch: Joi.boolean().default(true).optional().description('Also search for code in Segment, Family, Class. Otherwise only Commodity.')
@@ -30,11 +27,9 @@ exports.plugin = {
             },
             handler: function (request, h) {
                 logger.debug(`Request ${(request.method).toUpperCase()} ${request.path}`);
-                fs.readFile(unspscCodesFilename, 'utf8', (err, csv) => {
-                    if (err) {
-                      console.error(err);
-                      return;
-                    }
+                let csv;
+                try {
+                    csv = fs.readFileSync(unspscCodesFilename, {encoding: 'utf-8'});
                     const csvData = Papa.parse(csv, {header:true}).data
                     let result = {};
                     request.payload.forEach(code => {
@@ -59,11 +54,11 @@ exports.plugin = {
                             result[code].meta = meta;
                         }
                     });
-                    console.log(result); 
-                });  
-
-
-                return h.response("OK").code(200); // !!!!
+                    return result; 
+                } catch (err) {
+                    logger.error(err.message);
+                    return h.response({error: err.message}).code(500);
+                }
             }
         });    
 
@@ -86,11 +81,9 @@ exports.plugin = {
             },
             handler: function (request, h) {
                 logger.debug(`Request ${(request.method).toUpperCase()} ${request.path}`);
-                fs.readFile(unspscCodesFilename, 'utf8', (err, csv) => {
-                    if (err) {
-                      console.error(err);
-                      return;
-                    }
+                let csv;
+                try {
+                    csv = fs.readFileSync(unspscCodesFilename, {encoding: 'utf-8'});
                     const csvData = Papa.parse(csv, {header:true}).data;
                     const code = request.params.code;
                     let meta = csvData.filter(data => data.Commodity === code)[0]; 
@@ -113,15 +106,12 @@ exports.plugin = {
                     if (request.query.includeMeta) {
                         result.meta = meta;
                     }
-
-                    console.log(result); 
-                });  
-
-
-                return h.response("OK").code(200); // !!!!
+                    return result; 
+                } catch (err) {
+                    logger.error(err.message);
+                    return h.response({error: err.message}).code(500);
+                }
             }
         });    
-
-
     }
 };

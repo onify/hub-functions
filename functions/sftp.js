@@ -24,25 +24,31 @@ exports.plugin = {
                   })
                 }
             },
-            handler: function (request, h) {
+            handler: async function (request, h) {
               logger.debug(`Request ${(request.method).toUpperCase()} ${request.path}`);
               let sftp = new Client();
-              sftp.connect({ // options
+              let r = await sftp.connect({ // options
                 host: request.query.host,
                 port: request.query.port,
                 username: request.query.username,
                 password: request.query.password
               }).then(() => {
-                return sftp.get(request.query.filename); // /Bravida/SE/TEST/Catalogue/Leasing_SE.xml
+                return sftp.get(request.query.filename); 
               }).then(data => {
-                let content = data.toString();
+                const content = data.toString();
                 sftp.end();
-                console.log(content);
+                return {
+                  response: content,
+                  code: 200
+                };
               }).catch(err => {
-                console.log(err, 'catch error');
+                logger.error(err.message);
+                return {
+                  response: err.message,
+                  code: 500
+                };
               });
-
-              return h.response({}).code(200);
+              return h.response(r.response).code(r.code);
             }
         });    
  
