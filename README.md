@@ -6,21 +6,11 @@
 
 > Functions are a complement and sometime even a replacement for Onify Agent (scripts).
 
-## Functions
+## Structure
 
-* [hello](/functions/hello.js) - Example function(s)
-* [parser](/functions/parser.js) - Parser functions (eg. XML)
-* [sftp](/functions/sftp.js) - SFTP functions (WIP)
-* [mssql](/functions/mssql.js) - MSSQL functions (WIP)
-* [unspsc](/functions/unspsc.js) - UNSPSC® functions (WIP)
-
-### Building functions
-
-Please check out pre-built functions in `./functions` for some examples.
-
-## Data
-
-Please store data-files in the `./data` folder.
+* `./functions` - Functions
+* `./data` - Data store
+* `./lib` - Library
 
 ## Support
 

@@ -4,6 +4,25 @@ const Joi = require('joi');
 const sql = require('mssql');
 const logger = require('../lib/logger.js'); 
 
+ async function sqlQuery(sqlConfig, query) {
+    await sql.connect(sqlConfig).then(pool => {
+      return pool.request().query(query);
+    }).then(result => {
+      return {
+        response: result.recordset,
+        code: 200
+      };
+    }).catch(err => {
+      logger.error(err.message);
+      return {
+        response: {
+          error: err.message   
+        },
+        code: 500
+      };
+    });
+}
+
 exports.plugin = {
     name: 'mssql',
     register: async function (server, options) {
@@ -37,44 +56,14 @@ exports.plugin = {
                     server: request.query.server,
                     options: {
                       encrypt: request.query.encrypt, 
-                      trustServerCertificate: request.query.trustServerCertificate // change to true for local dev / self-signed certs
+                      trustServerCertificate: request.query.trustServerCertificate
                     }
-                  }
-
-                  sql.on('error', err => {
-                    console.log("Error");
-                  })
-                
-                sql.connect(sqlConfig).then(pool => {
-                    return pool.request()
-                        .query(request.query.query)
-                }).then(result => {
-                    //console.dir(result); // !!!!
-                    console.dir(result.recordset);
-                }).catch(err => {
-                    console.log(err); // !!!
-                });
-                  
-                return h.response("OK").code(200);
+                }
+                let r = sqlQuery(sqlConfig, request.query.query);  
+                return h.response(r.response).code(r.code);
             }
             
         });    
  
     }
 };
-
-
-/*
-
-async () => {
-    try {
-     // make sure that any items are correctly URL encoded in the connection string
-     await sql.connect(sqlConfig)
-     const result = await sql.query`select * from mytable where id = ${value}`
-     console.dir(result)
-    } catch (err) {
-     // ... error checks
-    }
-   }
-   */
-
