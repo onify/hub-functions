@@ -21,8 +21,11 @@
 ## TODO
 
 * Feature tests
-* Improve structure
 * More functions :-)
+
+## Contribute
+
+Please feel free to contribute! Please read [Code of Conduct](COC) first.
 
 ## License
 
