@@ -25,7 +25,7 @@
 
 ## Contribute
 
-Please feel free to contribute! Please read [Code of Conduct](COC) first.
+Please feel free to contribute! Please read [Code of Conduct](COC.md) first.
 
 ## License
 
