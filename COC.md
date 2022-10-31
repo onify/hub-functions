@@ -1,8 +1,8 @@
 # CODE OF CONDUCT
 
-## General
+## Don’t repeat yourself
 
-* [This Is Not The DRY You Are Looking For](https://medium.com/@nicolopigna/this-is-not-the-dry-you-are-looking-for-a316ed3f445f) - in short! Start repeating yourself and never start a file named utils
+* [This Is Not The DRY You Are Looking For](https://medium.com/@nicolopigna/this-is-not-the-dry-you-are-looking-for-a316ed3f445f) - in short! Start repeating yourself and never start a file named `utils`.
 
 ## Pull requests
 
@@ -16,7 +16,6 @@
 
 ## Feature tests
 
-* Do not write unit tests, write feature tests
-* Write feature tests for everything
+* Write tests for everything
 * The more tests, the better
 

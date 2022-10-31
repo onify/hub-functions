@@ -12,9 +12,9 @@ WORKDIR /usr/app
 COPY ./functions ./functions
 COPY ./data ./data
 COPY ./lib ./lib
-COPY ./app.js ./
 COPY ./package-lock.json ./
 COPY ./package.json ./
+COPY ./app.js ./
 
 RUN npm ci
 RUN npm prune --production

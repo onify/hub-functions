@@ -1,7 +1,7 @@
 'use strict';
 
 const Joi = require('joi');
-const Logger = require('../lib/Logger.js');
+const Logger = require('../lib/logger.js');
 
 //const API_BASE_PATH = '/api/products';
 
