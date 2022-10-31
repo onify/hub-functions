@@ -11,6 +11,7 @@
 * `./functions` - Functions
 * `./data` - Data store
 * `./lib` - Library
+* `./test` - Tests
 
 ## Support
 

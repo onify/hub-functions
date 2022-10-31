@@ -14,9 +14,12 @@
     "no-multi-spaces": 2,
     "no-shadow": 1,
     "no-use-before-define": [2, "nofunc"],
+    "@hapi/scope-start": "off",
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "space-before-function-paren": ["error", {
+    "padding-line-between-statements": "warn",
+    "comma-dangle": ["error", "never"],
+    "space-before-function-paren": ["warn", {
       "anonymous": "always",
       "named": "never",
       "asyncArrow": "always"
