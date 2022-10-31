@@ -21,4 +21,4 @@ RUN npm prune --production
 
 ENV NODE_ENV=production
 
-ENTRYPOINT [ "npm", "start" ]
+ENTRYPOINT [ "npm", "start", "--silent" ]
