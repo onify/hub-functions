@@ -1,9 +1,13 @@
 'use strict';
+
 const Joi = require('joi');
-const logger = require('../lib/logger.js');
+const Logger = require('../lib/Logger.js');
+
+//const API_BASE_PATH = '/api/products';
 
 exports.plugin = {
   name: 'hello',
+
   register: async function (server, options) {
     server.route({
       method: 'GET',
@@ -17,12 +21,12 @@ exports.plugin = {
             name: Joi.string()
               .required()
               .default('world')
-              .description('What is your name?'),
+              .description('What is your name?')
           }),
         },
       },
       handler: function (request, h) {
-        logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
+        Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
         return h.response({ hello: request.query.name }).code(200);
       },
     });
@@ -36,12 +40,12 @@ exports.plugin = {
         tags: ['api', 'hello'],
         validate: {
           params: Joi.object({
-            name: Joi.string().description('What is your name?'),
+            name: Joi.string().description('What is your name?')
           }),
         },
       },
       handler: function (request, h) {
-        logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
+        Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
         return h.response({ hello: request.params.name }).code(200);
       },
     });
@@ -60,7 +64,7 @@ exports.plugin = {
         },
       },
       handler: function (request, h) {
-        logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
+        Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
         return h.response({ hello: request.payload.name }).code(201);
       },
     });
@@ -82,7 +86,7 @@ exports.plugin = {
         },
       },
       handler: function (request, h) {
-        logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
+        Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
         const result = {
           hello: request.params.name,
           comment: request.payload.comment,
@@ -105,7 +109,7 @@ exports.plugin = {
         },
       },
       handler: function (request, h) {
-        logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
+        Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
         const result = {
           'bye bye': request.params.name,
         };
@@ -113,4 +117,5 @@ exports.plugin = {
       },
     });
   },
+
 };

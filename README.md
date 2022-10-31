@@ -21,6 +21,7 @@
 ## TODO
 
 * Feature tests
+* Improve logging
 * More functions :-)
 
 ## Contribute
