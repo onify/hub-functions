@@ -21,6 +21,7 @@
 
 ## TODO
 
+* Run tests via Github actions
 * More functions!
 * More tests!
 
