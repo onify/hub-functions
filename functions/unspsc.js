@@ -121,6 +121,9 @@ exports.plugin = {
             }
           }
           let result = { name: name };
+          if (!name) {
+            return h.response(result).code(404);  
+          }
           if (request.query.includeMeta) {
             result.meta = meta;
           }
