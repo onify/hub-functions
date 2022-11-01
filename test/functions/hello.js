@@ -17,7 +17,7 @@ describe('hello:', () => {
     await server.stop();
   });
 
-  it('GET /api/v1/hello', async () => {
+  it('GET /api/v1/hello (missing name)', async () => {
     const res = await server.inject({
       method: 'GET',
       url: '/api/v1/hello'

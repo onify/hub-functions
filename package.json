@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "UNNECESSARY=1 ./node_modules/.bin/lab -v",
+    "test": "lab -v",
     "test-and-lint": "lab -v -L"
   },
   "repository": {

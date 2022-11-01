@@ -1,4 +1,5 @@
 'use strict';
+const Logger = require('./lib/logger.js');
 const setupApp = require('./lib/setupApp');
 const {version} = require('./package.json');
 
@@ -17,10 +18,10 @@ function start() {
     process.once('SIGINT', terminate);
 
     return server.start().then(() => {
-      console.info(`Server ${version} running at: ${server.info.uri}`);
+      Logger.info(`Server ${version} running at: ${server.info.uri}`);
     });
   }).catch((err) => {
-    console.error(err.message);
+    Logger.error(err.message);
     throw err;
   });
 }
@@ -33,7 +34,7 @@ async function terminate(signal) {
     const server = await serverPromise.catch(() => {});
     await server?.stop({timeout: 10000});
   } catch (err) {
-    console.error(err, 'Failed to stop server %s: %s', version, err.message);
+    Logger.error(err, 'Failed to stop server %s: %s', version, err.message);
   }
 
   process.exit(signal);
