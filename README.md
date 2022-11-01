@@ -23,6 +23,46 @@ Here is an example how to run in Docker.
       - 8282:8282
 ```
 
+### Kubernetes
+
+Here is an example how to run in Kubernetes.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onify-functions
+spec:
+  selector:
+    matchLabels:
+      app: functions
+  template:
+    metadata:
+      labels:
+        app: functions
+    spec:
+     imagePullSecrets:
+      - name: onify-regcred
+     containers:
+     - name: functions
+       image: eu.gcr.io/onify-images/hub/functions:latest 
+       ports:
+       - name: functions
+         containerPort: 8282
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: onify-functions
+spec:
+  ports:
+    - protocol: TCP
+      name: functions
+      port: 8282
+  selector:
+    app: functions
+```
+
 ## Run
 
 To run it, just execute command `npm start`.
