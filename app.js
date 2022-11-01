@@ -1,9 +1,10 @@
 'use strict';
-const Logger = require('./lib/logger.js');
-const setupApp = require('./lib/setupApp');
-const {version} = require('./package.json');
 
-const serverPromise = setupApp();
+const Logger = require('./lib/logger.js');
+const SetupApp = require('./lib/setupApp');
+const { version } = require('./package.json');
+
+const serverPromise = SetupApp();
 
 module.exports = serverPromise;
 module.exports.start = start;
@@ -32,7 +33,7 @@ async function terminate(signal) {
 
   try {
     const server = await serverPromise.catch(() => {});
-    await server?.stop({timeout: 10000});
+    await server?.stop({ timeout: 10000 });
   } catch (err) {
     Logger.error(err, 'Failed to stop server %s: %s', version, err.message);
   }

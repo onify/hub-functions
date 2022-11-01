@@ -1,6 +1,6 @@
 'use strict';
 
-const swagger = require('hapi-swagger');
+const Swagger = require('hapi-swagger');
 const Pack = require('../package');
 
 /* register swagger plugin */
@@ -24,6 +24,6 @@ module.exports = {
       pathPrefixSize: 3
     };
 
-    await server.register([{ plugin: swagger, options }]);
+    await server.register([{ plugin: Swagger, options }]);
   }
 };

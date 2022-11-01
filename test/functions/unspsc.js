@@ -4,7 +4,7 @@ const Lab = require('@hapi/lab');
 const { expect } = require('@hapi/code');
 
 const { afterEach, beforeEach, describe, it } = (exports.lab = Lab.script());
-const helpers = require('../testHelpers');
+const Helpers = require('../testHelpers');
 
 const FUNCTION_ENDPOINT = '/api/v1/unspsc';
 
@@ -12,7 +12,7 @@ describe('unspsc:', () => {
   let server;
 
   beforeEach(async () => {
-    server = await helpers.getServer();
+    server = await Helpers.getServer();
   });
 
   afterEach(async () => {
@@ -38,7 +38,7 @@ describe('unspsc:', () => {
       name: 'Force tables',
       meta: {
         Segment: '60000000',
-        'Segment Name': 'Musical Instruments and Games and Toys and Arts and Crafts and Educational Equipment and Materials and Accessories and Supplies',        
+        'Segment Name': 'Musical Instruments and Games and Toys and Arts and Crafts and Educational Equipment and Materials and Accessories and Supplies',
         Family: '60100000',
         'Family Name': 'Developmental and professional teaching aids and materials and accessories and supplies',
         Class: '60104600',
@@ -47,7 +47,7 @@ describe('unspsc:', () => {
         'Commodity Name': 'Force tables'
       }
     });
-  });  
+  });
 
   it(`GET ${FUNCTION_ENDPOINT}/60104601?includeMeta=false - returns 200`, async () => {
     const res = await server.inject({
@@ -56,7 +56,7 @@ describe('unspsc:', () => {
     });
     expect(res.statusCode).to.equal(200);
     expect(res.result).to.equal({ name: 'Force tables' });
-  });  
+  });
 
   it(`GET ${FUNCTION_ENDPOINT}/60104600?includeMeta=false&deepSearch=true - find in deep search - returns 200`, async () => {
     const res = await server.inject({
@@ -65,7 +65,7 @@ describe('unspsc:', () => {
     });
     expect(res.statusCode).to.equal(200);
     expect(res.result).to.equal({ name: 'Mechanical physics materials' });
-  });  
+  });
 
   it(`GET ${FUNCTION_ENDPOINT}/60104600?includeMeta=false&deepSearch=false - not found because deep search is disabled - returns 404`, async () => {
     const res = await server.inject({
@@ -74,6 +74,6 @@ describe('unspsc:', () => {
     });
     expect(res.statusCode).to.equal(404);
     expect(res.result).to.equal({ name: null });
-  });  
+  });
 
 });

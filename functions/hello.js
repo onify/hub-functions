@@ -21,9 +21,9 @@ exports.plugin = {
             name: Joi.string()
               .required()
               .default('world')
-              .description('What is your name?'),
-          }),
-        },
+              .description('What is your name?')
+          })
+        }
       },
       handler: function (request, h) {
         Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
@@ -40,7 +40,7 @@ exports.plugin = {
         tags: ['api', 'hello'],
         validate: {
           params: Joi.object({
-            name: Joi.string().description('What is your name?'),
+            name: Joi.string().description('What is your name?')
           }),
         },
       },

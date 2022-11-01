@@ -1,8 +1,9 @@
 'use strict';
+
 const Joi = require('joi');
-const fs = require('fs');
+const Fs = require('fs');
 const Papa = require('papaparse');
-const logger = require('../lib/logger.js');
+const Logger = require('../lib/logger.js');
 
 const unspscCodesFilename = './data/unspsc/data-unspsc-codes.csv';
 
@@ -36,10 +37,10 @@ exports.plugin = {
         },
       },
       handler: function (request, h) {
-        logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
+        Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
         let csv;
         try {
-          csv = fs.readFileSync(unspscCodesFilename, { encoding: 'utf-8' });
+          csv = Fs.readFileSync(unspscCodesFilename, { encoding: 'utf-8' });
           const csvData = Papa.parse(csv, { header: true }).data;
           let result = {};
           request.payload.forEach((code) => {
@@ -66,7 +67,7 @@ exports.plugin = {
           });
           return result;
         } catch (err) {
-          logger.error(err.message);
+          Logger.error(err.message);
           return h.response({ error: err.message }).code(500);
         }
       },
@@ -98,10 +99,10 @@ exports.plugin = {
         },
       },
       handler: function (request, h) {
-        logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
+        Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
         let csv;
         try {
-          csv = fs.readFileSync(unspscCodesFilename, { encoding: 'utf-8' });
+          csv = Fs.readFileSync(unspscCodesFilename, { encoding: 'utf-8' });
           const csvData = Papa.parse(csv, { header: true }).data;
           const code = request.params.code;
           let meta = csvData.filter((data) => data.Commodity === code)[0];
@@ -129,7 +130,7 @@ exports.plugin = {
           }
           return result;
         } catch (err) {
-          logger.error(err.message);
+          Logger.error(err.message);
           return h.response({ error: err.message }).code(500);
         }
       },
