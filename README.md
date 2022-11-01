@@ -81,7 +81,7 @@ To run it, just execute command `npm start`.
 
 ## Contribute
 
-Please feel free to contribute! Please read [Code of Conduct](COC.md) first.
+Sharing is caring! :-) Please feel free to contribute! Please read [Code of Conduct](COC.md) first.
 
 ## License
 
