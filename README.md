@@ -6,6 +6,27 @@
 
 > Functions are a complement and sometime even a replacement for Onify Agent (scripts).
 
+## Deploy
+
+Checkout how to use the `hub-functions` container together with the other services [here](https://github.com/onify/install/blob/default/containers.md).
+
+### Docker
+
+Here is an example how to run in Docker.
+
+```yaml
+  functions:
+    image: eu.gcr.io/onify-images/hub/functions:latest
+    pull_policy: always
+    restart: always
+    ports:
+      - 8282:8282
+```
+
+## Run
+
+To run it, just execute command `npm start`.
+
 ## Support
 
 * Community/forum: https://support.onify.co/discuss
