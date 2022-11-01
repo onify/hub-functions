@@ -6,13 +6,6 @@
 
 > Functions are a complement and sometime even a replacement for Onify Agent (scripts).
 
-## Structure
-
-* `./functions` - Functions
-* `./data` - Data store
-* `./lib` - Library
-* `./test` - Tests
-
 ## Support
 
 * Community/forum: https://support.onify.co/discuss
