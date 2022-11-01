@@ -4,13 +4,13 @@ const Lab = require('@hapi/lab');
 const { expect } = require('@hapi/code');
 
 const { afterEach, beforeEach, describe, it } = (exports.lab = Lab.script());
-const { init } = require('../lib/server');
+const helpers = require('./testHelpers');
 
 describe('main:', () => {
   let server;
 
   beforeEach(async () => {
-    server = await init();
+    server = await helpers.getServer();
   });
 
   afterEach(async () => {

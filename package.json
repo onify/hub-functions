@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "lab -v",
+    "test": "UNNECESSARY=1 ./node_modules/.bin/lab -v",
     "test-and-lint": "lab -v -L"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "dependencies": {
     "@hapi/hapi": "^20.2.2",
     "@hapi/inert": "^7.0.0",
+    "@hapi/glue": "^8.0.0",
     "@hapi/vision": "^7.0.0",
     "dotenv": "^16.0.3",
     "fast-xml-parser": "^4.0.11",
