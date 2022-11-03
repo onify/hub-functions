@@ -80,6 +80,7 @@ To run it, just execute command `npm start`.
 ## TODO
 
 * Run tests via Github actions
+* Authentication (for some functions)
 * More functions!
 * More tests!
 
