@@ -80,9 +80,15 @@ To run it, just execute command `npm start`.
 ## TODO
 
 * Run tests via Github actions
-* Authentication (for some functions)
+* Onify authentication (for some functions)
+* Temp folder management
+* Automatic generate docs for functions
 * More functions!
 * More tests!
+
+## Generate functions docs
+
+Run `npx swagger-markdown -i ./swagger.json -o ./functions.md` to generate new `functions.md` file.
 
 ## Contribute
 

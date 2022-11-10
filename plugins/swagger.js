@@ -17,11 +17,11 @@ module.exports = {
         description: 'Server side functions for Onify Hub',
         version: Pack.version
       },
-      basePath: '/api/v1',
+      basePath: '/',
       swaggerUI: true,
       sortPaths: 'path-method',
       documentationPath: '/',
-      pathPrefixSize: 3
+      pathPrefixSize: 1
     };
 
     await server.register([{ plugin: Swagger, options }]);

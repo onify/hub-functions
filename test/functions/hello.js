@@ -6,7 +6,7 @@ const { expect } = require('@hapi/code');
 const { afterEach, beforeEach, describe, it } = (exports.lab = Lab.script());
 const Helpers = require('../testHelpers');
 
-const FUNCTION_ENDPOINT = '/api/v1/hello';
+const FUNCTION_ENDPOINT = '/hello';
 
 describe('hello:', () => {
   let server;

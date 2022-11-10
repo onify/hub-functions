@@ -11,7 +11,7 @@ exports.plugin = {
 
     server.route({
       method: 'POST',
-      path: '/api/v1/convert/xml/json',
+      path: '/convert/xml/json',
       options: {
         description: 'Convert XML content to JSON',
         notes: 'Converts XML content and returns JSON',
@@ -43,7 +43,7 @@ exports.plugin = {
 
     server.route({
       method: 'POST',
-      path: '/api/v1/convert/json/xml',
+      path: '/convert/json/xml',
       options: {
         description: 'Convert JSON content to XML',
         notes: 'Converts JSON content and returns XML',

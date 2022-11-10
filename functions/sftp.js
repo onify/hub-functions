@@ -8,7 +8,7 @@ exports.plugin = {
   register: async function (server, options) {
     server.route({
       method: 'GET',
-      path: '/api/v1/sftp/readfile',
+      path: '/sftp/readfile',
       options: {
         description: 'Read file from STFP server',
         notes: 'Reads file from SFTP server and returns raw content.',

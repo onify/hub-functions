@@ -8,7 +8,7 @@ exports.plugin = {
   register: async function (server, options) {
     server.route({
       method: 'GET',
-      path: '/api/v1/mssql/query',
+      path: '/mssql/query',
       options: {
         description: 'Microsoft SQL Server Query',
         notes: 'Query Microsoft SQL Server',

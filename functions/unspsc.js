@@ -12,7 +12,7 @@ exports.plugin = {
   register: async function (server, options) {
     server.route({
       method: 'POST',
-      path: '/api/v1/unspsc/names',
+      path: '/unspsc/names',
       options: {
         description: 'Get names by codes',
         notes: 'Get names by UNSPSC® codes',
@@ -75,7 +75,7 @@ exports.plugin = {
 
     server.route({
       method: 'GET',
-      path: '/api/v1/unspsc/{code}',
+      path: '/unspsc/{code}',
       options: {
         description: 'Get name by code',
         notes: 'Get name by UNSPSC® code',

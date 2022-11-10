@@ -11,7 +11,7 @@ exports.plugin = {
   register: async function (server, options) {
     server.route({
       method: 'GET',
-      path: '/api/v1/hello',
+      path: '/hello',
       options: {
         description: 'Says hello!',
         notes: 'Say hello to {name}',
@@ -33,7 +33,7 @@ exports.plugin = {
 
     server.route({
       method: 'GET',
-      path: '/api/v1/hello/{name}',
+      path: '/hello/{name}',
       options: {
         description: 'Says hello!',
         notes: 'Say hello to {name}',
@@ -52,7 +52,7 @@ exports.plugin = {
 
     server.route({
       method: 'POST',
-      path: '/api/v1/hello',
+      path: '/hello',
       options: {
         description: 'Says hello!',
         notes: 'Say hello to {name}',
@@ -71,7 +71,7 @@ exports.plugin = {
 
     server.route({
       method: 'PUT',
-      path: '/api/v1/hello/{name}',
+      path: '/hello/{name}',
       options: {
         description: 'Says hello!',
         notes: 'Say hello to {name}',
@@ -97,7 +97,7 @@ exports.plugin = {
 
     server.route({
       method: 'DELETE',
-      path: '/api/v1/hello/{name}',
+      path: '/hello/{name}',
       options: {
         description: 'Says bye bye!',
         notes: 'Say bye bye to {name}',
