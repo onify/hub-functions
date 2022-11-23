@@ -80,11 +80,9 @@ To run it, just execute command `npm start`.
 ## TODO
 
 * Run tests via Github actions
+* Move functions to own repos
 * Onify authentication (for some functions)
-* Temp folder management
 * Automatic generate docs for functions
-* More functions!
-* More tests!
 
 ## Generate functions docs
 
