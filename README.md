@@ -80,7 +80,6 @@ To run it, just execute command `npm start`.
 ## TODO
 
 * Run tests via Github actions
-* Move functions to own repos
 * Onify authentication (for some functions)
 * Automatic generate docs for functions
 
@@ -91,7 +90,6 @@ Run `npx swagger-markdown -i ./swagger.json -o ./functions.md` to generate new `
 ## Contribute
 
 Sharing is caring! :-) Please feel free to contribute! Please read [Code of Conduct](CODE_OF_CONDUCT.md) first.
-You can also create a new request (issue): https://github.com/onify/hub-functions/issues/new.
 
 ## License
 

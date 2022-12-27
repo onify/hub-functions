@@ -106,3 +106,4 @@ dist
 # Onify stuff :-)
 _lab/*
 swagger.json
+./functions

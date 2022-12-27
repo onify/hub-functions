@@ -11,7 +11,6 @@ WORKDIR /usr/app
 
 COPY ./functions ./functions
 COPY ./plugins ./plugins
-COPY ./data ./data
 COPY ./lib ./lib
 COPY ./package-lock.json ./
 COPY ./package.json ./

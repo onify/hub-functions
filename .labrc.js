@@ -14,8 +14,7 @@ const internals = {
   timeout: 30000,
   globals: 'Reflect,WebSocket,core,_babelPolyfill,regeneratorRuntime,__core-js_shared__,core,CSS,updateText,create,expect,FinalizationRegistry,WeakRef',
   paths: [
-    'test/main.js',
-    'test/functions',
+    'test/main.js'
   ]
 };
 

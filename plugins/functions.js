@@ -19,7 +19,7 @@ async function register(server) {
 
     files.forEach(function (file) {
       Logger.info(`Register function ${file}`);
-      server.register(require(`../${FUNCTIONS_PATH}/${file}`));
+      server.register(require(`../${FUNCTIONS_PATH}/${file}/src/function`));
     });
   });
 }
