@@ -71,6 +71,14 @@ spec:
 
 To run it, just execute command `npm start`.
 
+## Release
+
+1. Update version in `package.json`
+2. Update release `CHANGELOG.md`
+3. Commit the changes
+4. Run `git tag v*.*.*` (eg. 1.1.0)
+5. Run `git push --tags`
+
 ## Support
 
 * Community/forum: https://support.onify.co/discuss
@@ -80,7 +88,6 @@ To run it, just execute command `npm start`.
 ## TODO
 
 * Run tests via Github actions
-* Move functions to own repos
 * Onify authentication (for some functions)
 * Automatic generate docs for functions
 
