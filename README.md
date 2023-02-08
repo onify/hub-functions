@@ -6,10 +6,6 @@
 
 > Functions are a complement and sometime even a replacement for Onify Agent (scripts).
 
-## Functions
-
-Here are [docs](/functions.md) for the functions.
-
 ## Deploy
 
 Checkout how to use the `hub-functions` container together with the other services [here](https://github.com/onify/install/blob/default/containers.md).
@@ -90,10 +86,6 @@ To run it, just execute command `npm start`.
 * Run tests via Github actions
 * Onify authentication (for some functions)
 * Automatic generate docs for functions
-
-## Generate functions docs
-
-Run `npx swagger-markdown -i ./swagger.json -o ./functions.md` to generate new `functions.md` file.
 
 ## Contribute
 
