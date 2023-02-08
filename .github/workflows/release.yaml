@@ -12,35 +12,36 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT_ID: ${{ secrets.GCP_BUILD_PROJECT_ID }}
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     # Extract version tags from tag
     steps:
     - name: Setup variables
       id: variables
-      run: |
+      run: |-
         TAG_NAME=${GITHUB_REF/refs\/tags\//}
         FULL_V_TAG=$(echo $TAG_NAME | sed -r 's/^v(.+)/\1/')
         MINOR_V_TAG=$(echo $FULL_V_TAG | sed -r -e 's/.*-(\w+)/\1/' -e 's/(^[0-9]+\.[0-9]+).*/\1/')
         MAJOR_V_TAG=$(echo $MINOR_V_TAG | sed -r -e 's/(^[a-z]+).*/\1/' -e 's/(^[0-9]+).*/\1/')
 
-        echo ::set-output name=full_version_tag::$FULL_V_TAG
-        echo ::set-output name=minor_version_tag::$MINOR_V_TAG
-        echo ::set-output name=major_version_tag::$MAJOR_V_TAG
+        echo "full_version_tag=$FULL_V_TAG" >> $GITHUB_OUTPUT
+        echo "minor_version_tag=$MINOR_V_TAG" >> $GITHUB_OUTPUT
+        echo "major_version_tag=$MAJOR_V_TAG" >> $GITHUB_OUTPUT
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - run: |
-        sudo apt-get install python2.7
-        export CLOUDSDK_PYTHON="/usr/bin/python2"
+    - id: auth
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: '${{ secrets.GCP_BUILD_SERVICE_ACCOUNT_KEY }}'
 
     # Setup gcloud CLI
-    - uses: google-github-actions/setup-gcloud@v0
+    - uses: google-github-actions/setup-gcloud@v1
       with:
-        version: '286.0.0'
         project_id: ${{ secrets.GCP_BUILD_PROJECT_ID }}
-        service_account_email: ${{ secrets.GCP_BUILD_SERVICE_ACCOUNT_EMAIL }}
-        service_account_key: ${{ secrets.GCP_BUILD_SERVICE_ACCOUNT_KEY }}
 
     # Build and push image to Google Container Registry
     - name: Build
