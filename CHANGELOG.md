@@ -1,11 +1,9 @@
 CHANGELOG
 =========
 
-## latest
+## 1.1.0
 
-* feature: 
-* improve: 
-* fix: 
+* feature: new function: /activedirectory/users - Get users from Active Directory
 
 ## 1.0.0
 
