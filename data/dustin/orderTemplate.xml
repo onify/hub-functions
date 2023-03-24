@@ -4,13 +4,13 @@
       <OrderNumber>
          <BuyerOrderNumber></BuyerOrderNumber>
       </OrderNumber>
-      <OrderIssueDate></OrderIssueDate> 
+      <OrderIssueDate></OrderIssueDate>
       <Purpose>
          <PurposeCoded>Original</PurposeCoded>
       </Purpose>
       <OrderCurrency>
          <Currency>
-            <CurrencyCoded></CurrencyCoded> 
+            <CurrencyCoded></CurrencyCoded>
          </Currency>
       </OrderCurrency>
       <OrderLanguage>
@@ -36,19 +36,19 @@
                   <PostalCode></PostalCode>
                   <City></City>
                   <Country>
-                     <CountryCoded></CountryCoded> 
+                     <CountryCoded></CountryCoded>
                   </Country>
                </NameAddress>
                <OrderContact>
                   <Contact>
-                     <ContactName></ContactName> 
+                     <ContactName></ContactName>
                      <ListOfContactNumber>
                         <ContactNumber>
-                           <ContactNumberValue></ContactNumberValue> 
+                           <ContactNumberValue></ContactNumberValue>
                            <ContactNumberTypeCoded>TelephoneNumber</ContactNumberTypeCoded>
                         </ContactNumber>
                         <ContactNumber>
-                           <ContactNumberValue></ContactNumberValue> 
+                           <ContactNumberValue></ContactNumberValue>
                            <ContactNumberTypeCoded>EmailAddress</ContactNumberTypeCoded>
                         </ContactNumber>
                      </ListOfContactNumber>
@@ -64,7 +64,7 @@
                         <AgencyCoded>Other</AgencyCoded>
                         <AgencyCodedOther>VAT Number</AgencyCodedOther>
                      </Agency>
-                     <Ident></Ident>  
+                     <Ident></Ident>
                   </Identifier>
                </TaxIdentifier>
             </PartyTaxInformation>
