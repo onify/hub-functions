@@ -1,6 +1,7 @@
 'use strict';
 
 const Joi = require('joi');
+const Moment = require('moment');
 const { XMLParser, XMLValidator, XMLBuilder } = require('fast-xml-parser');
 const Fs = require('fs');
 const Logger = require('../lib/logger.js');
@@ -26,7 +27,7 @@ const buyerPartyValidation = {
   PostalCode: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.NameAddress.PostalCode'),
   City: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.NameAddress.City'),
   Country: Joi.string().regex(/^[A-Z]{2}$/).optional().default('SE').description('Order.OrderHeader.OrderParty.BuyerParty.Party.NameAddress.Country.CountryCoded'),
-  ContactName: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.ContactName'),
+  ContactName: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ContactName'),
   ContactPhone: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[0].ContactNumberValue'), // Required??
   ContactEmail: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[1].ContactNumberValue') // Required??
 };
@@ -39,7 +40,7 @@ const shipToPartyValidation = {
   PostalCode: Joi.string().optional().default('').allow(null, '').description('Order.OrderHeader.OrderParty.ShipToParty.Party.NameAddress.PostalCode'),
   City: Joi.string().optional().default('').allow(null, '').description('Order.OrderHeader.OrderParty.ShipToParty.Party.NameAddress.City'),
   Country: Joi.string().regex(/^[A-Z]{2}$/).optional().default('SE').description('Order.OrderHeader.OrderParty.ShipToParty.Party.NameAddress.Country.CountryCoded'),
-  ContactName: Joi.string().optional().default('').allow(null, '').description('Order.OrderHeader.OrderParty.ShipToParty.Party.OrderContact.ContactName'),
+  ContactName: Joi.string().optional().default('').allow(null, '').description('Order.OrderHeader.OrderParty.ShipToParty.Party.OrderContact.Contact.ContactName'),
   ContactPhone: Joi.string().optional().default('').allow(null, '').description('Order.OrderHeader.OrderParty.ShipToParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[0].ContactNumberValue'), // Required??
   ContactEmail: Joi.string().optional().default('').allow(null, '').description('Order.OrderHeader.OrderParty.ShipToParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[1].ContactNumberValue') // Required??
 };
@@ -59,10 +60,10 @@ const billToPartyValidation = {
 
 const OrderValidation = {
   BuyerOrderNumber: Joi.string().optional().allow(null, '').default('').description('Order.OrderHeader.OrderNumber.BuyerOrderNumber'),
-  Currency: Joi.string().regex(/^[A-Z]{3}$/).required().default('SEK').description('Order.OrderHeader.OrderCurrency.CurrencyCoded'),
+  Currency: Joi.string().regex(/^[A-Z]{3}$/).required().default('SEK').description('Order.OrderHeader.OrderCurrency.Currency.CurrencyCoded'),
   Notes: Joi.string().optional().allow(null, '').default('').description('Order.OrderHeader.OrderHeaderNote'),
   CostCenter: Joi.string().optional().allow(null, '').default('').description('Order.OrderHeader.ListOfStructuredNote.StructuredNote[0].GeneralNote'),
-  GodsMarking: Joi.string().optional().allow(null, '').default('').description('Order.OrderHeader.ListOfStructuredNote.StructuredNote[1].GeneralNote'),
+  GoodsMarking: Joi.string().optional().allow(null, '').default('').description('Order.OrderHeader.ListOfStructuredNote.StructuredNote[1].GeneralNote'),
   BuyerParty: buyerPartyValidation,
   ShipToParty: shipToPartyValidation,
   BillToParty: billToPartyValidation
@@ -101,7 +102,7 @@ exports.plugin = {
       handler: function (request, h) {
         Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
 
-        var currentDateTime = new Date().toISOString(); // new Date().toISOString().replaceAll('-','').slice(0, 17) + '+00:00'; ??
+        const currentDateTime = Moment(new Date()).format().replaceAll('-',''); //Format: YYYYMMDDTHH:MM:SS[[+-]HH:MM]? (the first MM is Months, the other two are minutes)
 
         let order;
         try {
@@ -113,10 +114,10 @@ exports.plugin = {
         try {
           order.Order.OrderHeader.OrderNumber.BuyerOrderNumber = request.payload.Order.BuyerOrderNumber; // Can be blank?
           order.Order.OrderHeader.OrderIssueDate = currentDateTime; // Current date/time?
-          order.Order.OrderHeader.OrderCurrency.CurrencyCoded = request.payload.Order.Currency; // Support other currency?
+          order.Order.OrderHeader.OrderCurrency.Currency.CurrencyCoded = request.payload.Order.Currency; // Support other currency?
           order.Order.OrderHeader.OrderHeaderNote = request.payload.Order.Notes; // Can be blank?
           order.Order.OrderHeader.ListOfStructuredNote.StructuredNote[0].GeneralNote = request.payload.Order.CostCenter; // CostCenter - can be blank, needed?
-          order.Order.OrderHeader.ListOfStructuredNote.StructuredNote[1].GeneralNote = request.payload.Order.GodsMarking; // GodsMarking - can be blank, needed?
+          order.Order.OrderHeader.ListOfStructuredNote.StructuredNote[1].GeneralNote = request.payload.Order.GoodsMarking; // GoodsMarking - can be blank, needed?
           
           order.Order.OrderHeader.OrderParty.BuyerParty.Party.PartyID.Identifier.Ident = request.payload.Order.BuyerParty.PartyID;
           order.Order.OrderHeader.OrderParty.BuyerParty.Party.NameAddress.Name1 = request.payload.Order.BuyerParty.Name;
@@ -124,7 +125,7 @@ exports.plugin = {
           order.Order.OrderHeader.OrderParty.BuyerParty.Party.NameAddress.PostalCode = request.payload.Order.BuyerParty.PostalCode;
           order.Order.OrderHeader.OrderParty.BuyerParty.Party.NameAddress.City = request.payload.Order.BuyerParty.City;
           order.Order.OrderHeader.OrderParty.BuyerParty.Party.NameAddress.Country.CountryCoded = request.payload.Order.BuyerParty.Country;
-          order.Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.ContactName = request.payload.Order.BuyerParty.ContactName;
+          order.Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ContactName = request.payload.Order.BuyerParty.ContactName;
           order.Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[0].ContactNumberValue = request.payload.Order.BuyerParty.ContactPhone; // Can be blank?
           order.Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[1].ContactNumberValue = request.payload.Order.BuyerParty.ContactEmail; // Can be blank?
           order.Order.OrderHeader.OrderParty.BuyerTaxInformation.PartyTaxInformation.TaxIdentifier.Identifier.Ident = request.payload.Order.BuyerParty.TaxIdentifier;
@@ -135,7 +136,7 @@ exports.plugin = {
           order.Order.OrderHeader.OrderParty.ShipToParty.Party.NameAddress.PostalCode = request.payload.Order.ShipToParty?.PostalCode || request.payload.Order.BuyerParty.PostalCode;
           order.Order.OrderHeader.OrderParty.ShipToParty.Party.NameAddress.City = request.payload.Order.ShipToParty?.City || request.payload.Order.BuyerParty.City;
           order.Order.OrderHeader.OrderParty.ShipToParty.Party.NameAddress.Country.CountryCoded = request.payload.Order.ShipToParty?.Country || request.payload.Order.BuyerParty.Country;
-          order.Order.OrderHeader.OrderParty.ShipToParty.Party.OrderContact.ContactName = request.payload.Order.ShipToParty?.ContactName || request.payload.Order.BuyerParty.ContactName;
+          order.Order.OrderHeader.OrderParty.ShipToParty.Party.OrderContact.Contact.ContactName = request.payload.Order.ShipToParty?.ContactName || request.payload.Order.BuyerParty.ContactName;
           order.Order.OrderHeader.OrderParty.ShipToParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[0].ContactNumberValue = request.payload.Order.ShipToParty?.ContactPhone || request.payload.Order.BuyerParty.ContactPhone; // Can be blank?
           order.Order.OrderHeader.OrderParty.ShipToParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[1].ContactNumberValue = request.payload.Order.ShipToParty?.ContactEmail || request.payload.Order.BuyerParty.ContactEmail; // Can be blank?
           
@@ -202,99 +203,3 @@ exports.plugin = {
     });
   },
 };
-
-/*
-
-TEST PAYLOADS
-
-{
-  "Order": {
-    "BuyerOrderNumber": "",
-    "Currency": "SEK",
-    "Notes": "",
-    "CostCenter": "",
-    "GodsMarking": "",
-    "BuyerParty": {
-      "PartyID": "44444",
-      "TaxIdentifier": "44444",
-      "Name": "Test",
-      "Street": "Gata 1",
-      "PostalCode": "1233",
-      "City": "gggg",
-      "Country": "SE",
-      "ContactName": "gg bbb",
-      "ContactPhone": "sdfsf",
-      "ContactEmail": "sdfsdf"
-    },
-    "ShipToParty": {
-      "PartyID": "",
-      "TaxIdentifier": "",
-      "Name": "",
-      "Street": "",
-      "PostalCode": "",
-      "City": "",
-      "Country": "SE",
-      "ContactName": "",
-      "ContactPhone": "",
-      "ContactEmail": ""
-    },
-    "BillToParty": {
-      "PartyID": "",
-      "TaxIdentifier": "",
-      "Name": "",
-      "Street": "",
-      "PostalCode": "",
-      "City": "",
-      "Country": "SE"
-    }
-  },
-  "OrderRows": [
-    {
-      "PartID": "ggfgfg",
-      "CommodityCode": "aaaaa",
-      "Quantity": 1,
-      "Price": 250.50,
-      "Currency": "SEK",
-      "LineItemNote": ""
-    }
-  ]
-}
-
-{
-  "Order": {
-    "Currency": "SEK",
-    "BuyerOrderNumber": "",
-    "BuyerParty": {
-      "PartyID": "44444",
-      "TaxIdentifier": "44444",
-      "Name": "Test",
-      "Street": "Gata 1",
-      "PostalCode": "1233",
-      "City": "gggg",
-      "Country": "SE",
-      "ContactName": "gg bbb",
-      "ContactPhone": "sdfsf",
-      "ContactEmail": "sdfsdf"
-    }
-  },
-  "OrderRows": [
-    {
-      "PartID": "ggfgfg",
-      "CommodityCode": "aaaaa",
-      "Quantity": 1,
-      "Price": 250.50,
-      "Currency": "SEK",
-      "LineItemNote": ""
-    },
-    {
-      "PartID": "ggfgfg",
-      "CommodityCode": "aaaaa",
-      "Quantity": 11,
-      "Price": 2540.50,
-      "Currency": "SEK",
-      "LineItemNote": ""
-    }    
-  ]
-}
-
-*/
