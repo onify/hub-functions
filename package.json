@@ -32,7 +32,8 @@
     "activedirectory2": "^2.1.0",
     "pino": "^8.7.0",
     "pino-pretty": "^9.1.1",
-    "ssh2-sftp-client": "^9.0.4"
+    "ssh2-sftp-client": "^9.0.4",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "@hapi/code": "^9.0.1",
