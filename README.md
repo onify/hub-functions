@@ -6,6 +6,24 @@
 
 > Functions are a complement and sometime even a replacement for Onify Agent (scripts).
 
+## Changelog
+
+### 1.3.0
+
+* feature: new function: /stfp/list - List files/folders on STFP server
+
+### 1.2.0
+
+* feature: new function: /dustin/prepare/order - Prepare EDI order for Dustin
+
+### 1.1.0
+
+* feature: new function: /activedirectory/users - Get users from Active Directory
+
+### 1.0.0
+
+First release...
+
 ## Deploy
 
 Checkout how to use the `hub-functions` container together with the other services [here](https://github.com/onify/install/blob/default/containers.md).
@@ -69,8 +87,8 @@ To run it, just execute command `npm start`.
 
 ## Release
 
-1. Update version in `package.json`
-2. Update release `CHANGELOG.md`
+1. Update changelog in `README.md`
+2. Update version in `package.json`
 3. Commit the changes
 4. Run `git tag v*.*.*` (eg. 1.1.0)
 5. Run `git push --tags`
@@ -80,12 +98,6 @@ To run it, just execute command `npm start`.
 * Community/forum: https://support.onify.co/discuss
 * Documentation: https://support.onify.co/docs
 * Support and SLA: https://support.onify.co/docs/get-support
-
-## TODO
-
-* Run tests via Github actions
-* Onify authentication (for some functions)
-* Automatic generate docs for functions
 
 ## Contribute
 
