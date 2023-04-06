@@ -5,6 +5,17 @@ on:
     branches: [ main ]
 
 jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 16
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16
+    - run: npm ci
+    - run: npm test
   build-latest:
     name: Build latest
     runs-on: ubuntu-latest
