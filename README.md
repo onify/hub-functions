@@ -9,6 +9,10 @@
 
 ## Changelog
 
+### 1.3.1
+
+* fix: do not require CommodityCode for Dustin order
+
 ### 1.3.0
 
 * feature: new function: /stfp/list - List files/folders on STFP server

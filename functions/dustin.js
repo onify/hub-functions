@@ -71,7 +71,7 @@ const OrderValidation = {
 
 const OrderRowValidation = {
   PartID: Joi.string().required().default('').description('ItemDetail.BaseItemDetail.ItemIdentifiers.PartNumbers.SellerPartNumber.PartNum.PartID'),
-  CommodityCode: Joi.string().required().default('').description('ItemDetail.BaseItemDetail.ItemIdentifiers.CommodityCode.Identifier.Ident'),
+  CommodityCode: Joi.string().optional().default('').description('ItemDetail.BaseItemDetail.ItemIdentifiers.CommodityCode.Identifier.Ident'),
   Quantity: Joi.number().integer().min(1).required().description('ItemDetail.BaseItemDetail.TotalQuantity.Quantity.QuantityValue'),
   Price: Joi.number().required().description('ItemDetail.PricingDetail.ListOfPrice.Price.UnitPrice.UnitPriceValue'),
   Currency: Joi.string().regex(/^[A-Z]{3}$/).required().default('SEK').description('ItemDetail.PricingDetail.ListOfPrice.Price.UnitPrice.Currency.CurrencyCoded'),
