@@ -9,6 +9,12 @@
 
 ## Changelog
 
+### 1.3.2
+
+* improve: `/dustin/prepare/order` - ContactPhone is now optional for BuyerParty
+* fix: `/dustin/prepare/order` - Price could not be 0
+* fix: `/dustin/prepare/order` - ItemDetail is now array, not ListOfItemDetail
+
 ### 1.3.1
 
 * fix: do not require CommodityCode for Dustin order

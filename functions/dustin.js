@@ -28,8 +28,8 @@ const buyerPartyValidation = {
   City: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.NameAddress.City'),
   Country: Joi.string().regex(/^[A-Z]{2}$/).optional().default('SE').description('Order.OrderHeader.OrderParty.BuyerParty.Party.NameAddress.Country.CountryCoded'),
   ContactName: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ContactName'),
-  ContactPhone: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[0].ContactNumberValue'), // Required??
-  ContactEmail: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[1].ContactNumberValue') // Required??
+  ContactPhone: Joi.string().optional().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[0].ContactNumberValue'), 
+  ContactEmail: Joi.string().required().default('').description('Order.OrderHeader.OrderParty.BuyerParty.Party.OrderContact.Contact.ListOfContactNumber.ContactNumber[1].ContactNumberValue')
 };
 
 const shipToPartyValidation = {
@@ -153,7 +153,9 @@ exports.plugin = {
           return h.response({ error: err.message }).code(500);
         }
 
-        order.Order.OrderDetail.ListOfItemDetail = []; 
+        order.Order.OrderDetail.ListOfItemDetail = {
+          ItemDetail: []    
+        }; 
         
         let orderRowsCount = 0;
         let totalMonetaryAmount = 0.0;
@@ -161,9 +163,11 @@ exports.plugin = {
         request.payload.OrderRows.forEach(requestOrderRow => {
             ++orderRowsCount;
             try {
-              const monetaryAmount = (parseFloat(requestOrderRow.Price) * parseInt(requestOrderRow.Quantity)).toFixed(2);
-              totalMonetaryAmount = totalMonetaryAmount + parseFloat(monetaryAmount);
-
+              let monetaryAmount;
+              if (requestOrderRow.Price > 0) {
+                monetaryAmount = (parseFloat(requestOrderRow.Price) * parseInt(requestOrderRow.Quantity)).toFixed(2);
+                totalMonetaryAmount = totalMonetaryAmount + parseFloat(monetaryAmount);
+              }
               let orderRow = parser.parse(orderRowBaseXML);
               orderRow.ItemDetail.BaseItemDetail.LineItemNum.BuyerLineItemNum = orderRowsCount; 
               orderRow.ItemDetail.BaseItemDetail.ItemIdentifiers.PartNumbers.SellerPartNumber.PartNum.PartID = requestOrderRow.PartID;
@@ -176,7 +180,7 @@ exports.plugin = {
               orderRow.ItemDetail.DeliveryDetail.ListOfScheduleLine.ScheduleLine.Quantity.QuantityValue = requestOrderRow.Quantity;
               orderRow.ItemDetail.DeliveryDetail.ListOfScheduleLine.ScheduleLine.RequestedDeliveryDate = currentDateTime;
               orderRow.ItemDetail.LineItemNote = requestOrderRow.LineItemNote;
-              order.Order.OrderDetail.ListOfItemDetail.push(orderRow);
+              order.Order.OrderDetail.ListOfItemDetail.ItemDetail.push(orderRow.ItemDetail);
             } catch (err) {
               return h.response({ error: err.message }).code(500);
             }              
