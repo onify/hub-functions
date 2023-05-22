@@ -8,7 +8,6 @@ exports.plugin = {
   name: 'activedirectory',
 
   register: async function (server, options) {
-    
     server.route({
       method: 'GET',
       path: '/activedirectory/users',
@@ -81,13 +80,19 @@ exports.plugin = {
               .description(
                 'Offset for pagination. When not provided, this method returns the first page only, which means startFrom = 0.'
               ),
+            rejectUnauthorized: Joi.boolean()
+              .default(false)
+              .optional()
+              .description(
+                'Similar to the `NODE_TLS_REJECT_UNAUTHORIZED` flag. Can be used if you have self signed certs. Only use when connecting to internal systems.'
+              ),
             sizeLimit: Joi.number()
               .integer()
               .default(200)
               .max(10000)
               .optional()
               .description(
-                'The maximum number of entries to return. Max 10000 entries.'
+                'The maximum number of entries to return. Max 10 000 entries.'
               ),
           }),
         },
@@ -99,6 +104,9 @@ exports.plugin = {
           url: request.query.url,
           username: request.query.username,
           password: request.query.password,
+          tlsOptions: {
+            rejectUnauthorized: request.query.rejectUnauthorized
+          }
         };
 
         var ad = {};
@@ -127,11 +135,14 @@ exports.plugin = {
               return resolve(users);
             });
           });
-          return h.response(users.slice(request.query.startFrom, request.query.sizeLimit)).code(200);
+          return h
+            .response(
+              users.slice(request.query.startFrom, request.query.sizeLimit)
+            )
+            .code(200);
         } catch (error) {
           return h.response({ error: error.message }).code(500);
         }
-
       },
     });
   },
