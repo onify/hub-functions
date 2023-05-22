@@ -9,6 +9,10 @@
 
 ## Changelog
 
+### 1.3.3
+
+* improve: add rejectUnauthorized for /activedirectory/users
+
 ### 1.3.2
 
 * improve: `/dustin/prepare/order` - ContactPhone is now optional for BuyerParty
