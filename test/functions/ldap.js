@@ -39,7 +39,7 @@ describe('ldap:', () => {
     expect(res.result.length > 0).to.equal(true);
   });
 
-  it(`GET ${FUNCTION_ENDPOINT}/search - unauthorized / user/password invalid - returns 200`, async () => {
+  it(`GET ${FUNCTION_ENDPOINT}/search - unauthorized / user/password invalid - returns 401`, async () => {
     const res = await server.inject({
       method: 'GET',
       url: `${FUNCTION_ENDPOINT}/search?url=ldap%3A%2F%2Fldap.forumsys.com&username=cn%3Dread-only-admin,dc%3Dexample,dc%3Dcom&password=wrongpassword&base=dc%3Dexample,dc%3Dcom&filter=(objectclass%3D*)&scope=sub`,

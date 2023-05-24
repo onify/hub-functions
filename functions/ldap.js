@@ -11,16 +11,16 @@ exports.plugin = {
       method: 'GET',
       path: '/ldap/search',
       options: {
-        description: 'Get users via LDAP',
+        description: 'Search LDAP server',
         notes:
-          'Get users from LDAP server based on filter. Based on http://ldapjs.org/filters.html',
+          'Performs a search operation against the LDAP server. We are using ldapjs npm here. Check http://ldapjs.org for full docs.',
         tags: ['api', 'ldap'],
         validate: {
           query: Joi.object({
             url: Joi.string()
               .required()
               .description(
-                'LDAP server to connect to, `ldap://ad.example.com`.'
+                'A valid LDAP URL (proto/host/port), e.g. `ldap://ad.example.com`.'
               ),
             username: Joi.string()
               .required()
@@ -35,7 +35,7 @@ exports.plugin = {
             })
               .optional()
               .description(
-                'Additional options passed to TLS connection layer when connecting via ldaps://'
+                'Additional options passed to TLS connection layer when connecting via `ldaps://`'
               ),
             base: Joi.string()
               .required()
@@ -51,11 +51,12 @@ exports.plugin = {
               .valid('base', 'one', 'sub')
               .default('base')
               .required()
-              .description('One of base, one, or sub. Defaults to base.'),
+              .description('One of `base`, `one`, or `sub`'),
             attributes: Joi.array()
               .items(Joi.string().required())
               .optional()
-              .default(['dn', 'sn', 'cn']),
+              .default(['dn', 'sn', 'cn'])
+              .description('Attributes to select and return'),
           }),
         },
       },
