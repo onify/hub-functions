@@ -3,6 +3,7 @@
 const Joi = require('joi');
 const LDAP = require('ldapjs');
 const Logger = require('../lib/logger.js');
+const Qs = require('qs');
 
 exports.plugin = {
   name: 'ldap',
@@ -30,13 +31,27 @@ exports.plugin = {
             password: Joi.string()
               .required()
               .description('Password for the given username.'),
-            tlsOptions: Joi.object({
-              rejectUnauthorized: Joi.boolean().required(),
-            })
-              .optional()
-              .description(
-                'Additional options passed to TLS connection layer when connecting via `ldaps://`'
-              ),
+            tlsOptions: (_value, options) => {
+              const schema = Joi.object({
+                rejectUnauthorized: Joi.boolean().required(),
+              })
+                .optional()
+                .description(
+                  'Additional options passed to TLS connection layer when connecting via ldaps://'
+                );
+
+              const value = Qs.parse(_value, { delimiter: /[;,]/ });
+              const validationResult = schema.validate(value);
+
+              if (validationResult.error) {
+                const errorMessage = validationResult.error.details
+                  .map((error) => error.message)
+                  .join(', ');
+                throw new Error(errorMessage);
+              }
+
+              return validationResult.value;
+            },
             base: Joi.string()
               .required()
               .description(
