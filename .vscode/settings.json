@@ -1,0 +1,5 @@
+{
+    "editor.formatOnSave": true,
+    "javascript.preferences.quoteStyle": "auto",
+    "prettier.singleQuote": true
+}
