@@ -86,6 +86,18 @@ exports.plugin = {
               .description(
                 'Either return the raw object (true) or a simplified structure (false)'
               ),
+            paged: Joi.boolean()
+              .default(false)
+              .optional()
+              .description('Enable and/or configure automatic result paging'),
+            sizeLimit: Joi.number()
+              .integer()
+              .default(200)
+              .max(10000)
+              .optional()
+              .description(
+                'The maximum number of entries to return. Max 10000 entries.'
+              ),
           }),
         },
       },
@@ -121,11 +133,14 @@ exports.plugin = {
           });
         }
 
-        const { filter, base, scope, attributes, raw } = request.query;
+        const { filter, base, scope, attributes, raw, paged, sizeLimit } =
+          request.query;
         const options = {
           filter,
           scope,
           attributes,
+          paged,
+          sizeLimit,
         };
 
         try {
