@@ -76,4 +76,24 @@ describe('ldap:', () => {
     expect(res.statusCode).to.equal(200);
     expect(res.result.length).to.equal(1);
   });
+
+  it(`GET ${FUNCTION_ENDPOINT}/search - search result without supplied raw parameter - returns 200`, async () => {
+    const res = await server.inject({
+      method: 'GET',
+      url: `${FUNCTION_ENDPOINT}/search?url=${url}&username=${username}&password=${password}&base=${base}&filter=${filter}&scope=${scope}`,
+    });
+
+    expect(res.statusCode).to.equal(200);
+    expect(Object.keys(res.result[0]).includes('messageId')).to.equal(false);
+  });
+
+  it(`GET ${FUNCTION_ENDPOINT}/search - search result with supplied raw parameter value true - returns 200`, async () => {
+    const res = await server.inject({
+      method: 'GET',
+      url: `${FUNCTION_ENDPOINT}/search?url=${url}&username=${username}&password=${password}&base=${base}&filter=${filter}&scope=${scope}&raw=true`,
+    });
+
+    expect(res.statusCode).to.equal(200);
+    expect(Object.keys(res.result[0]).includes('messageId')).to.equal(true);
+  });
 });

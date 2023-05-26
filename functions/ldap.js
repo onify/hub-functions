@@ -13,7 +13,7 @@ exports.plugin = {
   name: 'ldap',
   register: async function (server) {
     server.ext('onRequest', (request, h) => {
-      let { tlsOptions } = request.query;
+      let { tlsOptions, attributes } = request.query;
 
       if (tlsOptions) {
         tlsOptions = Qs.parse(tlsOptions, {
@@ -21,6 +21,12 @@ exports.plugin = {
         });
 
         request.query.tlsOptions = tlsOptions;
+      }
+
+      if (attributes && !Array.isArray(attributes)) {
+        attributes = [attributes];
+
+        request.query.attributes = attributes;
       }
 
       return h.continue;
@@ -75,6 +81,11 @@ exports.plugin = {
               .optional()
               .default(['dn', 'sn', 'cn'])
               .description('Attributes to select and return'),
+            raw: Joi.boolean()
+              .default(false)
+              .description(
+                'Either return the raw object (true) or a simplified structure (false)'
+              ),
           }),
         },
       },
@@ -110,7 +121,7 @@ exports.plugin = {
           });
         }
 
-        const { filter, base, scope, attributes } = request.query;
+        const { filter, base, scope, attributes, raw } = request.query;
         const options = {
           filter,
           scope,
@@ -163,8 +174,30 @@ exports.plugin = {
             });
           }
 
+          function simplify(result) {
+            return result.reduce((accumulator, value) => {
+              const { objectName, attributes } = value;
+
+              attributes.forEach((attribute) => {
+                const { type, values } = attribute;
+                let obj = { objectName };
+
+                values.forEach((value) => {
+                  obj[type] = value;
+                  accumulator.push(obj);
+                });
+              });
+
+              return accumulator;
+            }, []);
+          }
+
           await login();
-          const result = await search();
+          let result = await search();
+
+          if (!raw) {
+            result = simplify(result);
+          }
 
           return h.response(result).code(200);
         } catch (error) {
