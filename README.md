@@ -11,25 +11,25 @@
 
 ### 1.3.2
 
-- improve: `/dustin/prepare/order` - ContactPhone is now optional for BuyerParty
-- fix: `/dustin/prepare/order` - Price could not be 0
-- fix: `/dustin/prepare/order` - ItemDetail is now array, not ListOfItemDetail
+* improve: `/dustin/prepare/order` - ContactPhone is now optional for BuyerParty
+* fix: `/dustin/prepare/order` - Price could not be 0
+* fix: `/dustin/prepare/order` - ItemDetail is now array, not ListOfItemDetail
 
 ### 1.3.1
 
-- fix: do not require CommodityCode for Dustin order
+* fix: do not require CommodityCode for Dustin order
 
 ### 1.3.0
 
-- feature: new function: /stfp/list - List files/folders on STFP server
+* feature: new function: /stfp/list - List files/folders on STFP server
 
 ### 1.2.0
 
-- feature: new function: /dustin/prepare/order - Prepare EDI order for Dustin
+* feature: new function: /dustin/prepare/order - Prepare EDI order for Dustin
 
 ### 1.1.0
 
-- feature: new function: /activedirectory/users - Get users from Active Directory
+* feature: new function: /activedirectory/users - Get users from Active Directory
 
 ### 1.0.0
 
@@ -100,6 +100,7 @@ To run it, just execute command `npm start`.
 
 In VSCode, there is a built-in debugging functionality. To run in debug mode, please press F5. This will execute the commands
 stated in the launch.json file. You may place in break points in the line/s of code to verify a current status of variables during the process.
+In the upper right of the code editor, you will see the debug controls to control when to play/pause the flow during runtime.
 
 ## Release
 
@@ -111,9 +112,9 @@ stated in the launch.json file. You may place in break points in the line/s of c
 
 ## Support
 
-- Community/forum: https://support.onify.co/discuss
-- Documentation: https://support.onify.co/docs
-- Support and SLA: https://support.onify.co/docs/get-support
+* Community/forum: https://support.onify.co/discuss
+* Documentation: https://support.onify.co/docs
+* Support and SLA: https://support.onify.co/docs/get-support
 
 ## Contribute
 
