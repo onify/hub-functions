@@ -5,9 +5,26 @@ const LDAP = require('ldapjs');
 const Logger = require('../lib/logger.js');
 const Qs = require('qs');
 
+/**
+ *
+ * @type {import('@hapi/hapi').PluginBase}
+ */
 exports.plugin = {
   name: 'ldap',
-  register: async function (server, options) {
+  register: async function (server) {
+    server.ext('onRequest', (request, h) => {
+      let { tlsOptions } = request.query;
+
+      if (tlsOptions) {
+        tlsOptions = Qs.parse(tlsOptions, {
+          delimiter: /[;,]/,
+        });
+
+        request.query.tlsOptions = tlsOptions;
+      }
+
+      return h.continue;
+    });
     server.route({
       method: 'GET',
       path: '/ldap/search',
@@ -31,27 +48,13 @@ exports.plugin = {
             password: Joi.string()
               .required()
               .description('Password for the given username.'),
-            tlsOptions: (_value) => {
-              const schema = Joi.object({
-                rejectUnauthorized: Joi.boolean().required(),
-              })
-                .optional()
-                .description(
-                  'Additional options passed to TLS connection layer when connecting via ldaps://'
-                );
-
-              const value = Qs.parse(_value, { delimiter: /[;,]/ });
-              const validationResult = schema.validate(value);
-
-              if (validationResult.error) {
-                const errorMessage = validationResult.error.details
-                  .map((error) => error.message)
-                  .join(', ');
-                throw new Error(errorMessage);
-              }
-
-              return validationResult.value;
-            },
+            tlsOptions: Joi.object({
+              rejectUnauthorized: Joi.boolean().required(),
+            })
+              .optional()
+              .description(
+                'Additional options passed to TLS connection layer when connecting via ldaps://'
+              ),
             base: Joi.string()
               .required()
               .description(
@@ -80,30 +83,32 @@ exports.plugin = {
 
         const { url, username, password } = request.query;
 
-        const setupClient = new Promise((resolve, reject) => {
-          const client = LDAP.createClient({
-            url,
+        async function setupClient() {
+          return new Promise((resolve, reject) => {
+            const client = LDAP.createClient({
+              url,
+            });
+
+            const clientErrorListener = (error) => {
+              if (client) {
+                client.unbind((error) => {
+                  if (error) {
+                    Logger.warn(error.message);
+                  }
+                });
+              }
+
+              reject(error);
+            };
+
+            client.on('error', clientErrorListener);
+
+            client.on('connect', () => {
+              client.removeListener('error', clientErrorListener);
+              resolve(client);
+            });
           });
-
-          const clientErrorListener = (error) => {
-            if (client) {
-              client.unbind((error) => {
-                if (error) {
-                  Logger.warn(error.message);
-                }
-              });
-            }
-
-            reject(error);
-          };
-
-          client.on('error', clientErrorListener);
-
-          client.on('connect', () => {
-            client.removeListener('error', clientErrorListener);
-            resolve(client);
-          });
-        });
+        }
 
         const { filter, base, scope, attributes } = request.query;
         const options = {
@@ -113,49 +118,53 @@ exports.plugin = {
         };
 
         try {
-          const client = await setupClient;
+          const client = await setupClient();
 
-          const login = new Promise((resolve, reject) => {
-            client.bind(username, password, (error) => {
-              if (error) {
-                error.statusCode = 401;
-                reject(error);
-              }
+          async function login() {
+            return new Promise((resolve, reject) => {
+              client.bind(username, password, (error) => {
+                if (error) {
+                  error.statusCode = 401;
+                  reject(error);
+                }
 
-              resolve();
+                resolve();
+              });
             });
-          });
+          }
 
-          const search = new Promise((resolve, reject) => {
-            const entries = [];
+          async function search() {
+            return new Promise((resolve, reject) => {
+              const entries = [];
 
-            client.search(base, options, (error, result) => {
-              result.on('searchEntry', (entry) => {
-                entries.push(entry.pojo);
-              });
-
-              result.on('error', (error) => {
-                reject(error);
-              });
-
-              result.on('end', () => {
-                client.unbind((error) => {
-                  if (error) {
-                    Logger.warn(error.message);
-                  }
+              client.search(base, options, (error, result) => {
+                result.on('searchEntry', (entry) => {
+                  entries.push(entry.pojo);
                 });
 
-                resolve(entries);
+                result.on('error', (error) => {
+                  reject(error);
+                });
+
+                result.on('end', () => {
+                  client.unbind((error) => {
+                    if (error) {
+                      Logger.warn(error.message);
+                    }
+                  });
+
+                  resolve(entries);
+                });
+
+                if (error) {
+                  reject(error);
+                }
               });
-
-              if (error) {
-                reject(error);
-              }
             });
-          });
+          }
 
-          await login;
-          const result = await search;
+          await login();
+          const result = await search();
 
           return h.response(result).code(200);
         } catch (error) {
