@@ -31,7 +31,7 @@ exports.plugin = {
             password: Joi.string()
               .required()
               .description('Password for the given username.'),
-            tlsOptions: (_value, options) => {
+            tlsOptions: (_value) => {
               const schema = Joi.object({
                 rejectUnauthorized: Joi.boolean().required(),
               })

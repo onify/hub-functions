@@ -48,4 +48,24 @@ describe('ldap:', () => {
     expect(res.statusCode).to.equal(401);
     expect(res.result.error).to.equal('Invalid Credentials');
   });
+
+  it(`GET ${FUNCTION_ENDPOINT}/search - search for a user that does not exist - returns 200`, async () => {
+    const res = await server.inject({
+      method: 'GET',
+      url: `${FUNCTION_ENDPOINT}/search?url=ldap%3A%2F%2Fldap.forumsys.com&username=cn%3Dread-only-admin,dc%3Dexample,dc%3Dcom&password=password&base=dc%3Dexample,dc%3Dcom&filter=(uid%3DIamUnrecognized)&scope=sub&tlsOptions=rejectUnauthorized%3Dfalse`,
+    });
+
+    expect(res.statusCode).to.equal(200);
+    expect(res.result).to.equal([]);
+  });
+
+  it(`GET ${FUNCTION_ENDPOINT}/search - search for a user that does exist - returns 200`, async () => {
+    const res = await server.inject({
+      method: 'GET',
+      url: `${FUNCTION_ENDPOINT}/search?url=ldap%3A%2F%2Fldap.forumsys.com&username=cn%3Dread-only-admin,dc%3Dexample,dc%3Dcom&password=password&base=uid%3Dtesla,dc%3Dexample,dc%3Dcom&filter=(uid%3Dtesla)&scope=sub&tlsOptions=rejectUnauthorized%3Dfalse`,
+    });
+
+    expect(res.statusCode).to.equal(200);
+    expect(res.result.length).to.equal(1);
+  });
 });
