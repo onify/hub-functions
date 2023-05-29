@@ -90,7 +90,7 @@ exports.plugin = {
               .default(false)
               .optional()
               .description('Enable and/or configure automatic result paging'),
-            sizeLimit: Joi.number()
+            pageSize: Joi.number()
               .integer()
               .default(200)
               .max(10000)
@@ -133,18 +133,36 @@ exports.plugin = {
           });
         }
 
-        const { filter, base, scope, attributes, raw, paged, sizeLimit } =
+        const { filter, base, scope, attributes, raw, paged, pageSize } =
           request.query;
         const options = {
           filter,
           scope,
           attributes,
-          paged,
-          sizeLimit,
+          paged: paged ? { pageSize, pagePause: true } : false,
         };
 
         try {
           const client = await setupClient();
+
+          function simplify(rows) {
+            return rows.reduce((accumulator, value) => {
+              const { objectName, attributes } = value;
+              let obj = { objectName };
+
+              attributes.forEach((attribute) => {
+                const { type, values } = attribute;
+
+                values.forEach((value) => {
+                  obj[type] = value;
+                });
+              });
+
+              accumulator.push(obj);
+
+              return accumulator;
+            }, []);
+          }
 
           async function login() {
             return new Promise((resolve, reject) => {
@@ -161,11 +179,15 @@ exports.plugin = {
 
           async function search() {
             return new Promise((resolve, reject) => {
-              const entries = [];
-
               client.search(base, options, (error, result) => {
+                let rows = [];
+
+                function normalizedRows() {
+                  return !raw ? simplify(rows) : rows;
+                }
+
                 result.on('searchEntry', (entry) => {
-                  entries.push(entry.pojo);
+                  rows.push(entry.pojo);
                 });
 
                 result.on('error', (error) => {
@@ -179,7 +201,11 @@ exports.plugin = {
                     }
                   });
 
-                  resolve(entries);
+                  resolve(normalizedRows());
+                });
+
+                result.on('page', () => {
+                  resolve(normalizedRows());
                 });
 
                 if (error) {
@@ -189,30 +215,8 @@ exports.plugin = {
             });
           }
 
-          function simplify(result) {
-            return result.reduce((accumulator, value) => {
-              const { objectName, attributes } = value;
-
-              attributes.forEach((attribute) => {
-                const { type, values } = attribute;
-                let obj = { objectName };
-
-                values.forEach((value) => {
-                  obj[type] = value;
-                  accumulator.push(obj);
-                });
-              });
-
-              return accumulator;
-            }, []);
-          }
-
           await login();
           let result = await search();
-
-          if (!raw) {
-            result = simplify(result);
-          }
 
           return h.response(result).code(200);
         } catch (error) {
