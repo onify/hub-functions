@@ -205,6 +205,12 @@ exports.plugin = {
                 });
 
                 result.on('page', () => {
+                  client.unbind((error) => {
+                    if (error) {
+                      Logger.warn(error.message);
+                    }
+                  });
+
                   resolve(normalizedRows());
                 });
 
