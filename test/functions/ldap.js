@@ -96,4 +96,14 @@ describe('ldap:', () => {
     expect(res.statusCode).to.equal(200);
     expect(Object.keys(res.result[0]).includes('messageId')).to.equal(true);
   });
+
+  it(`GET ${FUNCTION_ENDPOINT}/search - search result with paged parameter value true - returns 200`, async () => {
+    const res = await server.inject({
+      method: 'GET',
+      url: `${FUNCTION_ENDPOINT}/search?url=${url}&username=${username}&password=${password}&base=${base}&filter=${filter}&scope=${scope}&paged=true&pageSize=5`,
+    });
+
+    expect(res.statusCode).to.equal(200);
+    expect(res.result.length === 5).to.equal(true);
+  });
 });
