@@ -9,6 +9,10 @@
 
 ## Changelog
 
+### 1.4.0
+
+* feature: `/ldap/search` - New function: Search LDAP server
+
 ### 1.3.3
 
 * improve: add rejectUnauthorized for /activedirectory/users
@@ -48,12 +52,12 @@ Checkout how to use the `hub-functions` container together with the other servic
 Here is an example how to run in Docker.
 
 ```yaml
-  functions:
-    image: eu.gcr.io/onify-images/hub/functions:latest
-    pull_policy: always
-    restart: always
-    ports:
-      - 8282:8282
+functions:
+  image: eu.gcr.io/onify-images/hub/functions:latest
+  pull_policy: always
+  restart: always
+  ports:
+    - 8282:8282
 ```
 
 ### Kubernetes
@@ -74,14 +78,14 @@ spec:
       labels:
         app: functions
     spec:
-     imagePullSecrets:
-      - name: onify-regcred
-     containers:
-     - name: functions
-       image: eu.gcr.io/onify-images/hub/functions:latest 
-       ports:
-       - name: functions
-         containerPort: 8282
+      imagePullSecrets:
+        - name: onify-regcred
+      containers:
+        - name: functions
+          image: eu.gcr.io/onify-images/hub/functions:latest
+          ports:
+            - name: functions
+              containerPort: 8282
 ---
 apiVersion: v1
 kind: Service
@@ -99,6 +103,13 @@ spec:
 ## Run
 
 To run it, just execute command `npm start`.
+
+### Run in debug mode
+
+In VSCode, there is a built-in debugging functionality. To run in debug mode, please press F5. This will execute the commands
+stated in the launch.json file. You may place in break points in the line/s of code to verify a current status of variables during the process.  
+
+In the upper right section of the code editor, you will see the debug controls for triggering when to play/pause the flow during runtime.
 
 ## Release
 
