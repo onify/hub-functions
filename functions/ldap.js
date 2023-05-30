@@ -92,11 +92,11 @@ exports.plugin = {
               .description('Enable and/or configure automatic result paging'),
             pageSize: Joi.number()
               .integer()
-              .default(200)
+              .default(100)
               .max(10000)
               .optional()
               .description(
-                'The maximum number of entries to return. Max 10000 entries.'
+                'The pageSize parameter sets the size of result pages requested from the server.'
               ),
           }),
         },

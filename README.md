@@ -9,6 +9,10 @@
 
 ## Changelog
 
+### 1.4.0
+
+* feature: `/ldap/search` - New function: Search LDAP server
+
 ### 1.3.2
 
 * improve: `/dustin/prepare/order` - ContactPhone is now optional for BuyerParty
@@ -96,11 +100,10 @@ spec:
 
 To run it, just execute command `npm start`.
 
-## Run in debug mode
+### Run in debug mode
 
 In VSCode, there is a built-in debugging functionality. To run in debug mode, please press F5. This will execute the commands
-stated in the launch.json file.  
-You may place in break points in the line/s of code to verify a current status of variables during the process.  
+stated in the launch.json file. You may place in break points in the line/s of code to verify a current status of variables during the process.  
 
 In the upper right section of the code editor, you will see the debug controls for triggering when to play/pause the flow during runtime.
 
