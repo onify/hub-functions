@@ -9,6 +9,12 @@
 
 ## Changelog
 
+### 1.4.1
+
+* improve: updated to perform converting sid only when simplified
+* improve: handled objectSid and objectGuid in simplified rows
+* improve: adjusted ldap route query parameters and response handling
+
 ### 1.4.0
 
 * feature: `/ldap/search` - New function: Search LDAP server
