@@ -166,10 +166,12 @@ exports.plugin = {
 
           function simplify(rows) {
             return rows.reduce((accumulator, row) => {
-              const { objectName, attributes } = row;
+              const { objectName, objectSid, objectGUID, attributes } = row;
 
               let obj = {
                 objectName,
+                objectSid,
+                objectGUID,
               };
 
               attributes.forEach((attribute) => {
