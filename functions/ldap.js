@@ -207,21 +207,27 @@ exports.plugin = {
                 let rows = [];
 
                 function normalizeRows() {
-                  rows.forEach((row) => {
-                    if (row.objectSid) {
-                      row.objectSid = Utils.binarySidToStringSid(
-                        Buffer.from(row.objectSid, 'binary')
-                      );
-                    }
+                  try {
+                    rows.forEach((row) => {
+                      if (!raw) {
+                        if (row.objectSid) {
+                          row.objectSid = Utils.binarySidToStringSid(
+                            Buffer.from(row.objectSid, 'binary')
+                          );
+                        }
 
-                    if (row.objectGUID) {
-                      row.objectGUID = Utils.binarySidToStringSid(
-                        Buffer.from(row.objectGUID, 'binary')
-                      );
-                    }
-                  });
+                        if (row.objectGUID) {
+                          row.objectGUID = Utils.binarySidToStringSid(
+                            Buffer.from(row.objectGUID, 'binary')
+                          );
+                        }
+                      }
+                    });
 
-                  return !raw ? simplify(rows) : rows;
+                    return !raw ? simplify(rows) : rows;
+                  } catch (error) {
+                    reject(error);
+                  }
                 }
 
                 result.on('searchEntry', (entry) => {
