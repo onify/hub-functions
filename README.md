@@ -11,9 +11,8 @@
 
 ### 1.4.1
 
-* improve: updated to perform converting sid only when simplified
-* improve: handled objectSid and objectGuid in simplified rows
-* improve: adjusted ldap route query parameters and response handling
+* improve: `/ldap/search` - Convert binary attributes objectSid and objectGuid to text
+* improve: `/ldap/search` - Adjusted query parameters and response handling
 
 ### 1.4.0
 
