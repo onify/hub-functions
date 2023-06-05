@@ -170,9 +170,15 @@ exports.plugin = {
 
               let obj = {
                 objectName,
-                objectSid,
-                objectGUID,
               };
+
+              if (objectSid) {
+                obj.objectSid = objectSid;
+              }
+
+              if (objectGUID) {
+                obj.objectGUID = objectGUID;
+              }
 
               attributes.forEach((attribute) => {
                 const { type, values } = attribute;

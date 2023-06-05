@@ -97,7 +97,7 @@ describe('ldap:', () => {
 
     expect(res.statusCode).to.equal(200);
     expect(
-      Object.keys(res.result[0]).every((key) => requiredKeys.includes(key))
+      requiredKeys.every((key) => Object.keys(res.result[0]).includes(key))
     ).to.equal(true);
   });
 
