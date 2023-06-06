@@ -180,13 +180,13 @@ exports.plugin = {
                 obj.objectGUID = objectGUID;
               }
 
-              attributes.forEach((attribute) => {
+              for (const attribute of attributes) {
                 const { type, values } = attribute;
 
-                values.forEach((value) => {
+                for (const value of values) {
                   obj[type] = value;
-                });
-              });
+                }
+              }
 
               accumulator.push(obj);
 
@@ -214,7 +214,7 @@ exports.plugin = {
 
                 function normalizeRows() {
                   try {
-                    rows.forEach((row) => {
+                    for (const row of rows) {
                       if (!raw) {
                         if (row.objectSid) {
                           row.objectSid = Utils.binarySidToStringSid(
@@ -228,7 +228,7 @@ exports.plugin = {
                           );
                         }
                       }
-                    });
+                    }
 
                     return !raw ? simplify(rows) : rows;
                   } catch (error) {
