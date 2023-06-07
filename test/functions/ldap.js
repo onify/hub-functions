@@ -94,11 +94,12 @@ describe('ldap:', () => {
     });
 
     const requiredKeys = ['objectName', 'cn', 'sn'];
+    const resultKeys = Object.keys(res.result[0]);
 
     expect(res.statusCode).to.equal(200);
-    expect(
-      Object.keys(res.result[0]).every((key) => requiredKeys.includes(key))
-    ).to.equal(true);
+    expect(requiredKeys.every((key) => resultKeys.includes(key))).to.equal(
+      true
+    );
   });
 
   it(`GET ${FUNCTION_ENDPOINT}/search - search result with supplied raw parameter value true - returns 200`, async () => {
@@ -108,10 +109,11 @@ describe('ldap:', () => {
     });
 
     const requiredKeys = ['objectName', 'attributes', 'type'];
+    const resultKeys = Object.keys(res.result[0]);
 
     expect(res.statusCode).to.equal(200);
     expect(
-      requiredKeys.every((key) => Object.keys(res.result[0]).includes(key)) &&
+      requiredKeys.every((key) => resultKeys.includes(key)) &&
         res.result[0]['type'] === 'SearchResultEntry' &&
         Array.isArray(res.result[0]['attributes'])
     ).to.equal(true);

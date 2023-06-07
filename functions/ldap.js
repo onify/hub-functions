@@ -3,6 +3,7 @@
 const Joi = require('joi');
 const LDAP = require('ldapjs');
 const Logger = require('../lib/logger.js');
+const Utils = require('../lib/utils.js');
 const Qs = require('qs');
 
 /**
@@ -55,7 +56,24 @@ exports.plugin = {
               .required()
               .description('Password for the given username.'),
             tlsOptions: Joi.object({
-              rejectUnauthorized: Joi.boolean().required(),
+              isServer: Joi.boolean()
+                .description(
+                  'isServer: The SSL/TLS protocol is asymmetrical, TLSSockets must know if they are to behave as a server or a client. If true the TLS socket will be instantiated as a server. Default: false.'
+                )
+                .default(false),
+              requestCert: Joi.boolean()
+                .description(
+                  'Whether to authenticate the remote peer by requesting a certificate. Clients always request a server certificate. Servers (isServer is true) may set requestCert to true to request a client certificate. Default: false.'
+                )
+                .default(false),
+              rejectUnauthorized: Joi.boolean()
+                .description(
+                  'If not false the server will reject any connection which is not authorized with the list of supplied CAs. This option only has an effect if requestCert is true. Default: true.'
+                )
+                .default(true),
+              clientCertEngine: Joi.string().description(
+                'Name of an OpenSSL engine which can provide the client certificate.'
+              ),
             })
               .optional()
               .description(
@@ -104,12 +122,13 @@ exports.plugin = {
       handler: async function (request, h) {
         Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
 
-        const { url, username, password } = request.query;
+        const { url, username, password, tlsOptions } = request.query;
 
         async function setupClient() {
           return new Promise((resolve, reject) => {
             const client = LDAP.createClient({
               url,
+              tlsOptions,
             });
 
             const clientErrorListener = (error) => {
@@ -146,17 +165,28 @@ exports.plugin = {
           const client = await setupClient();
 
           function simplify(rows) {
-            return rows.reduce((accumulator, value) => {
-              const { objectName, attributes } = value;
-              let obj = { objectName };
+            return rows.reduce((accumulator, row) => {
+              const { objectName, objectSid, objectGUID, attributes } = row;
 
-              attributes.forEach((attribute) => {
+              let obj = {
+                objectName,
+              };
+
+              if (objectSid) {
+                obj.objectSid = objectSid;
+              }
+
+              if (objectGUID) {
+                obj.objectGUID = objectGUID;
+              }
+
+              for (const attribute of attributes) {
                 const { type, values } = attribute;
 
-                values.forEach((value) => {
+                for (const value of values) {
                   obj[type] = value;
-                });
-              });
+                }
+              }
 
               accumulator.push(obj);
 
@@ -182,8 +212,28 @@ exports.plugin = {
               client.search(base, options, (error, result) => {
                 let rows = [];
 
-                function normalizedRows() {
-                  return !raw ? simplify(rows) : rows;
+                function normalizeRows() {
+                  try {
+                    for (const row of rows) {
+                      if (!raw) {
+                        if (row.objectSid) {
+                          row.objectSid = Utils.binarySidToStringSid(
+                            Buffer.from(row.objectSid, 'binary')
+                          );
+                        }
+
+                        if (row.objectGUID) {
+                          row.objectGUID = Utils.binarySidToStringSid(
+                            Buffer.from(row.objectGUID, 'binary')
+                          );
+                        }
+                      }
+                    }
+
+                    return !raw ? simplify(rows) : rows;
+                  } catch (error) {
+                    reject(error);
+                  }
                 }
 
                 result.on('searchEntry', (entry) => {
@@ -201,7 +251,7 @@ exports.plugin = {
                     }
                   });
 
-                  resolve(normalizedRows());
+                  resolve(normalizeRows());
                 });
 
                 result.on('page', () => {
@@ -211,7 +261,7 @@ exports.plugin = {
                     }
                   });
 
-                  resolve(normalizedRows());
+                  resolve(normalizeRows());
                 });
 
                 if (error) {

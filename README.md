@@ -9,6 +9,12 @@
 
 ## Changelog
 
+### 1.4.1
+
+* improve: `/ldap/search` - Convert binary attributes objectSid and objectGuid to text
+* improve: `/ldap/search` - Adjusted query parameters and response handling
+* fix: `/ldap/search` - Handled test script and property logic bugs
+
 ### 1.4.0
 
 * feature: `/ldap/search` - New function: Search LDAP server
