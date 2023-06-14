@@ -9,6 +9,10 @@
 
 ## Changelog
 
+### 1.4.2
+
+* chore: bump fast-xml-parser from 4.0.11 to 4.2.4
+
 ### 1.4.1
 
 * improve: `/ldap/search` - Convert binary attributes objectSid and objectGuid to text

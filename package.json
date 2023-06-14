@@ -1,6 +1,6 @@
 {
   "name": "hub-functions",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Onify Hub Functions",
   "main": "app.js",
   "scripts": {
