@@ -141,7 +141,7 @@ describe('ldap:', () => {
     expect(res.statusCode).to.equal(200);
   });
 
-  it(`GET ${FUNCTION_ENDPOINT}/search - search result for query without using helper function on environment variable placeholder in parameters - returns 200`, async () => {
+  it(`GET ${FUNCTION_ENDPOINT}/search - search result for query without using helper function on environment variable placeholder in parameters - returns 401`, async () => {
     const username = '%7B%7BdatabaseUser%7D%7D';
     const password = '%7B%7BdatabasePassword%7D%7D';
 
