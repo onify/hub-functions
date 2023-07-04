@@ -17,7 +17,7 @@ let configPath;
 if (path.isAbsolute(CONFIG_BASE_PATH)) {
   configPath = path.normalize(CONFIG_BASE_PATH) + path.sep + configFileName;
 } else {
-  configPath = CONFIG_BASE_PATH.replace(/\/$/, '/') + '/' + configFileName;
+  configPath = CONFIG_BASE_PATH + '/' + configFileName;
 }
 
 module.exports = serverPromise;
