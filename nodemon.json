@@ -1,0 +1,9 @@
+{
+  "ignore": ["tmp/", "node_modules/", "logs/", "test/"],
+  "ext": "js json env",
+  "watch": ["*", ".env"],
+  "env": {
+    "ENV_PREFIX": "ONIFY_",
+    "INTERPRET_CHAR_AS_DOT": "_"
+  }
+}
