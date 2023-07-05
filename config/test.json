@@ -1,7 +1,0 @@
-{
-    "ldap": {
-        "databaseUser": "cn=read-only-admin,dc=example,dc=com",
-        "databasePassword": "password",
-        "url": "ldap%3A%2F%2Fldap.forumsys.com"
-    }
-}

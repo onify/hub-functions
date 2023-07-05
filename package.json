@@ -25,7 +25,7 @@
     "@hapi/inert": "^7.0.0",
     "@hapi/vision": "^7.0.0",
     "activedirectory2": "^2.1.0",
-    "exp-config": "^4.2.1",
+    "dotenv": "^16.3.1",
     "fast-xml-parser": "^4.2.4",
     "handlebars": "^4.7.7",
     "hapi-swagger": "^15.0.0",

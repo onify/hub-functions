@@ -1,6 +1,0 @@
-{
-    "ldap": {
-        "databaseUser": "OVERRIDE_IN_ENV",
-        "databasePassword": "OVERRIDE_IN_ENV"
-    }
-}
