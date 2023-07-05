@@ -1,0 +1,8 @@
+{
+  "ignore": ["tmp/", "node_modules/", "logs/", "test/"],
+  "ext": "js json env",
+  "watch": [
+    "*",
+    ".env"
+  ]
+}

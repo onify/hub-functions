@@ -5,6 +5,7 @@ const LDAP = require('ldapjs');
 const Logger = require('../lib/logger.js');
 const Utils = require('../lib/utils.js');
 const Qs = require('qs');
+const helpers = require("../lib/helpers.js")
 
 /**
  *
@@ -14,6 +15,8 @@ exports.plugin = {
   name: 'ldap',
   register: async function (server) {
     server.ext('onRequest', (request, h) => {
+      helpers.setQueryParameterTemplateValues(request.query);
+
       let { tlsOptions, attributes } = request.query;
 
       if (tlsOptions) {
