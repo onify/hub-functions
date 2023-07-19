@@ -3,11 +3,26 @@
 const Logger = require('../lib/logger.js');
 const readXlsxFile = require('read-excel-file/node');
 
+const DATA_SCHEMA = {
+    'Förnamn': {
+        prop: 'firstname',
+        type: String
+    },
+    'Efternamn': {
+        prop: 'lastname',
+        type: String
+    },
+    'Epost': {
+        prop: 'email',
+        type: String
+    },
+}
+
 /**
  * @type {import('@hapi/hapi').PluginBase}
  */
 exports.plugin = {
-    name: 'excelreader',
+    name: 'excel',
     register: function (server) {
         server.route({
             method: 'POST',
@@ -21,23 +36,7 @@ exports.plugin = {
                 Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
 
                 try {
-                    const schema = {
-                        'Förnamn': {
-                            prop: 'firstname',
-                            type: String
-                        },
-                        'Efternamn': {
-                            prop: 'lastname',
-                            type: String
-                        },
-                        'Epost': {
-                            prop: 'email',
-                            type: String
-                        },
-                    }
-
-                    const records = await readXlsxFile(request.payload.path, { schema });
-
+                    const records = await readXlsxFile(request.payload.path, { schema: DATA_SCHEMA });
                     return h.response(records).code(200);
                 } catch (error) {
                     const { message } = error;
@@ -45,7 +44,6 @@ exports.plugin = {
                     Logger.error(message);
                     return h.response({ error: message }).code(500);
                 }
-
             }
         });
     }
