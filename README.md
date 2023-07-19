@@ -9,6 +9,10 @@
 
 ## Changelog
 
+## latest
+
+* feat: excel read endpoint
+
 ### 1.4.2
 
 * chore: bump fast-xml-parser from 4.0.11 to 4.2.4
