@@ -30,7 +30,7 @@ exports.plugin = {
             options: {
                 payload: {
                     output: 'file',
-                    maxBytes: 1048576, // 1mb default limit. Large file may be chunked in a separate hub-function.
+                    maxBytes: 5242880, // 5mb default limit. Large file may be chunked in a separate hub-function.
                 },
             },
             handler: async function (request, h) {
