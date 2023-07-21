@@ -39,7 +39,10 @@ exports.plugin = {
 
             for (const key of Object.keys(parsedSchema)) {
                 const _parsedSchema = parsedSchema[key];
-                _parsedSchema.type = getParsedType(_parsedSchema.type);
+
+                if (_parsedSchema.type) {
+                    _parsedSchema.type = getParsedType(_parsedSchema.type);
+                }
             }
 
             query.schema = parsedSchema;
