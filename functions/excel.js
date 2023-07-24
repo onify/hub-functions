@@ -53,13 +53,16 @@ exports.plugin = {
             method: 'POST',
             path: '/excel/read',
             options: {
+                description: 'Read excel file and return data in JSON-format',
+                notes: 'Parse uploaded excel file and return contents in JSON-format. Please see https://www.npmjs.com/package/read-excel-file for more details parser.',
+                tags: ['api', 'excel'],                
                 payload: {
                     output: 'file',
                     maxBytes: 5242880, // 5mb default limit. Large file may be chunked in a separate hub-function.
                 },
                 validate: {
                     query: Joi.object({
-                        schema: Joi.object(),
+                        schema: Joi.object().description('This should be a JSON object, see https://gitlab.com/catamphetamine/read-excel-file#json for more information. Eg. `{"firstname":{"prop":"First name","type":"String"},"lastname":{"prop":"Last name","type":"String"},"email":{"prop":"E-mail","type":"String"}}`'),
                     })
                 }
             },
