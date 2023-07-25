@@ -5,6 +5,7 @@ const { expect } = require('@hapi/code');
 const ExcelJS = require('exceljs');
 const { afterEach, beforeEach, describe, it } = (exports.lab = Lab.script());
 const Helpers = require('../testHelpers');
+const FormData = require('form-data');
 
 const FUNCTION_ENDPOINT = '/excel';
 
@@ -45,11 +46,16 @@ describe('excel read:', () => {
         sheet.addRows(data);
 
         const bufferData = await workbook.xlsx.writeBuffer();
+        const form = new FormData();
+
+        form.append('file', bufferData, { filename: 'test.xlsx' });
+        form.append('schema', JSON.stringify(schema));
 
         const res = await server.inject({
             method: 'POST',
-            url: `${FUNCTION_ENDPOINT}/read?schema=${JSON.stringify(schema)}`,
-            payload: bufferData,
+            url: `${FUNCTION_ENDPOINT}/read`,
+            payload: form.getBuffer(),
+            headers: form.getHeaders(),
         });
 
         const { statusCode, result } = res;
@@ -89,11 +95,16 @@ describe('excel read:', () => {
         sheet.addRows(data);
 
         const bufferData = await workbook.xlsx.writeBuffer();
+        const form = new FormData();
+
+        form.append('file', bufferData, { filename: 'test.xlsx' });
+        form.append('schema', JSON.stringify(schema));
 
         const res = await server.inject({
             method: 'POST',
-            url: `${FUNCTION_ENDPOINT}/read?schema=${JSON.stringify(schema)}`,
-            payload: bufferData,
+            url: `${FUNCTION_ENDPOINT}/read`,
+            payload: form.getBuffer(),
+            headers: form.getHeaders(),
         });
 
         const { statusCode, result } = res;
@@ -137,11 +148,16 @@ describe('excel read:', () => {
         sheet.addRows(data);
 
         const bufferData = await workbook.xlsx.writeBuffer();
+        const form = new FormData();
+
+        form.append('file', bufferData, { filename: 'test.xlsx' });
+        form.append('schema', JSON.stringify(schema));
 
         const res = await server.inject({
             method: 'POST',
-            url: `${FUNCTION_ENDPOINT}/read?schema=${JSON.stringify(schema)}`,
-            payload: bufferData,
+            url: `${FUNCTION_ENDPOINT}/read`,
+            payload: form.getBuffer(),
+            headers: form.getHeaders(),
         });
 
         const { statusCode, result } = res;
@@ -181,11 +197,16 @@ describe('excel read:', () => {
         sheet.addRows(data);
 
         const bufferData = await workbook.xlsx.writeBuffer();
+        const form = new FormData();
+
+        form.append('file', bufferData, { filename: 'test.xlsx' });
+        form.append('schema', JSON.stringify(schema));
 
         const res = await server.inject({
             method: 'POST',
-            url: `${FUNCTION_ENDPOINT}/read?schema=${JSON.stringify(schema)}`,
-            payload: bufferData,
+            url: `${FUNCTION_ENDPOINT}/read`,
+            payload: form.getBuffer(),
+            headers: form.getHeaders(),
         });
 
         const { statusCode, result } = res;
@@ -213,17 +234,25 @@ describe('excel read:', () => {
         sheet.addRows(data);
 
         const bufferData = await workbook.xlsx.writeBuffer();
+        const form = new FormData();
+
+        form.append('file', bufferData, { filename: 'test.xlsx' });
 
         const res = await server.inject({
             method: 'POST',
             url: `${FUNCTION_ENDPOINT}/read`,
-            payload: bufferData,
+            payload: form.getBuffer(),
+            headers: form.getHeaders(),
         });
 
         const { statusCode, result } = res;
 
         expect(statusCode).to.equal(200);
-        expect(result.rows).to.equal([]);
+        expect(result.rows).to.equal([
+            { 'Förnamn': 'First1', Efternamn: 'Last1', Epost: 'first1@mail.com' },
+            { 'Förnamn': 'First2', Efternamn: 'Last2', Epost: 'first2@mail.com' },
+            { 'Förnamn': 'First3', Efternamn: 'Last3', Epost: 'first3@mail.com' }
+        ]);
         expect(result.errors).to.equal([]);
     });
 });

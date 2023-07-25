@@ -11,67 +11,79 @@ const { Integer, Email, URL } = readXlsxFile;
 exports.plugin = {
     name: 'excel',
     register: function (server) {
-        server.ext('onRequest', (request, h) => {
-            const query = request.query;
-
-            function getParsedType(type) {
-                switch (type) {
-                    case 'String':
-                        return String;
-                    case 'Number':
-                        return Number;
-                    case 'Boolean':
-                        return Boolean;
-                    case 'Date':
-                        return Date;
-                    case 'Integer':
-                        return Integer;
-                    case 'Email':
-                        return Email;
-                    case 'URL':
-                        return URL;
-                    default:
-                        return type;
-                };
-            };
-
-            const parsedSchema = query.schema ? JSON.parse(query.schema) : {};
-
-            for (const key of Object.keys(parsedSchema)) {
-                const _parsedSchema = parsedSchema[key];
-
-                if (_parsedSchema.type) {
-                    _parsedSchema.type = getParsedType(_parsedSchema.type);
-                }
-            }
-
-            query.schema = parsedSchema;
-
-            return h.continue;
-        });
         server.route({
             method: 'POST',
             path: '/excel/read',
             options: {
                 description: 'Read excel file and return data in JSON-format',
                 notes: 'Parse uploaded excel file and return contents in JSON-format. Please see https://www.npmjs.com/package/read-excel-file for more details parser.',
-                tags: ['api', 'excel'],                
+                tags: ['api', 'excel'],
                 payload: {
-                    output: 'file',
+                    multipart: {
+                        output: 'file',
+                    },
+                    allow: 'multipart/form-data',
                     maxBytes: 5242880, // 5mb default limit. Large file may be chunked in a separate hub-function.
                 },
                 validate: {
-                    query: Joi.object({
-                        schema: Joi.object().description('This should be a JSON object, see https://gitlab.com/catamphetamine/read-excel-file#json for more information. Eg. `{"firstname":{"prop":"First name","type":"String"},"lastname":{"prop":"Last name","type":"String"},"email":{"prop":"E-mail","type":"String"}}`'),
-                    })
+                    payload: Joi.object({
+                        schema: Joi.string().optional().description('This should be a JSON object, see https://gitlab.com/catamphetamine/read-excel-file#json for more information. Eg. `{"firstname":{"prop":"First name","type":"String"},"lastname":{"prop":"Last name","type":"String"},"email":{"prop":"E-mail","type":"String"}}`'),
+                        file: Joi.object().required(),
+                    }),
                 }
             },
             handler: async function (request, h) {
                 Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
-                const { payload, query } = request;
+                const { file, schema } = request.payload;
+
+                function getParsedType(type) {
+                    switch (type) {
+                        case 'String':
+                            return String;
+                        case 'Number':
+                            return Number;
+                        case 'Boolean':
+                            return Boolean;
+                        case 'Date':
+                            return Date;
+                        case 'Integer':
+                            return Integer;
+                        case 'Email':
+                            return Email;
+                        case 'URL':
+                            return URL;
+                        default:
+                            return type;
+                    };
+                };
 
                 try {
-                    const records = await readXlsxFile(payload.path, { schema: query.schema });
+                    let parsedSchema = schema ? JSON.parse(schema) : {};
+
+                    for (const key of Object.keys(parsedSchema)) {
+                        const _parsedSchema = parsedSchema[key];
+
+                        if (_parsedSchema.type) {
+                            _parsedSchema.type = getParsedType(_parsedSchema.type);
+                        }
+                    }
+
+                    if (Object.keys(parsedSchema).length === 0) {
+                        parsedSchema = await readXlsxFile(file.path).then(rows => {
+                            const obj = {};
+
+                            for (const key of rows[0]) {
+                                obj[key] = {
+                                    prop: key,
+                                    type: String,
+                                }
+                            }
+
+                            return obj;
+                        });
+                    }
+
+                    const records = await readXlsxFile(file.path, { schema: parsedSchema });
                     return h.response(records).code(200);
                 } catch (error) {
                     const { message } = error;
