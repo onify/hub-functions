@@ -255,4 +255,75 @@ describe('excel read:', () => {
         ]);
         expect(result.errors).to.equal([]);
     });
+
+    it(`POST ${FUNCTION_ENDPOINT}/read - sheet is supplied - returns 200`, async () => {
+        const headerRow = ['Förnamn', 'Efternamn', 'Epost'];
+        const dataRows = [
+            ['First1', 'Last1', 'first1@mail.com'],
+            ['First2', 'Last2', 'first2@mail.com'],
+            ['First3', 'Last3', 'first3@mail.com'],
+        ];
+        const sheetName = 'Sheet1';
+
+        const data = [headerRow, ...dataRows];
+
+        const workbook = new ExcelJS.Workbook();
+        const sheet = workbook.addWorksheet(sheetName);
+
+        sheet.addRows(data);
+
+        const bufferData = await workbook.xlsx.writeBuffer();
+        const form = new FormData();
+
+        form.append('file', bufferData, { filename: 'test.xlsx' });
+        form.append('sheet', sheetName);
+
+        const res = await server.inject({
+            method: 'POST',
+            url: `${FUNCTION_ENDPOINT}/read`,
+            payload: form.getBuffer(),
+            headers: form.getHeaders(),
+        });
+
+        const { statusCode, result } = res;
+
+        expect(statusCode).to.equal(200);
+        expect(result.rows).to.equal([
+            { 'Förnamn': 'First1', Efternamn: 'Last1', Epost: 'first1@mail.com' },
+            { 'Förnamn': 'First2', Efternamn: 'Last2', Epost: 'first2@mail.com' },
+            { 'Förnamn': 'First3', Efternamn: 'Last3', Epost: 'first3@mail.com' }
+        ]);
+        expect(result.errors).to.equal([]);
+    });
+
+    it(`POST ${FUNCTION_ENDPOINT}/read - an unknown sheet name is supplied - returns 500`, async () => {
+        const headerRow = ['Förnamn', 'Efternamn', 'Epost'];
+        const dataRows = [
+            ['First1', 'Last1', 'first1@mail.com'],
+            ['First2', 'Last2', 'first2@mail.com'],
+            ['First3', 'Last3', 'first3@mail.com'],
+        ];
+
+        const data = [headerRow, ...dataRows];
+
+        const workbook = new ExcelJS.Workbook();
+        const sheet = workbook.addWorksheet('Test');
+
+        sheet.addRows(data);
+
+        const bufferData = await workbook.xlsx.writeBuffer();
+        const form = new FormData();
+
+        form.append('file', bufferData, { filename: 'test.xlsx' });
+        form.append('sheet', 'unknown_sheet');
+
+        const res = await server.inject({
+            method: 'POST',
+            url: `${FUNCTION_ENDPOINT}/read`,
+            payload: form.getBuffer(),
+            headers: form.getHeaders(),
+        });
+
+        expect(res.statusCode).to.equal(500);
+    });
 });

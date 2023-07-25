@@ -28,13 +28,14 @@ exports.plugin = {
                 validate: {
                     payload: Joi.object({
                         schema: Joi.string().optional().description('This should be a JSON object, see https://gitlab.com/catamphetamine/read-excel-file#json for more information. Eg. `{"firstname":{"prop":"First name","type":"String"},"lastname":{"prop":"Last name","type":"String"},"email":{"prop":"E-mail","type":"String"}}`'),
+                        sheet: Joi.string().optional(),
                         file: Joi.object().required(),
                     }),
                 }
             },
             handler: async function (request, h) {
                 Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
-                const { file, schema } = request.payload;
+                const { file, schema, sheet } = request.payload;
 
                 function getParsedType(type) {
                     switch (type) {
@@ -83,7 +84,13 @@ exports.plugin = {
                         });
                     }
 
-                    const records = await readXlsxFile(file.path, { schema: parsedSchema });
+                    const options = { schema: parsedSchema };
+
+                    if (sheet) {
+                        Object.assign(options, { sheet })
+                    }
+
+                    const records = await readXlsxFile(file.path, options);
                     return h.response(records).code(200);
                 } catch (error) {
                     const { message } = error;
