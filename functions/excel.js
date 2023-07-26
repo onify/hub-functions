@@ -11,6 +11,47 @@ const { Integer, Email, URL } = readXlsxFile;
 exports.plugin = {
     name: 'excel',
     register: function (server) {
+        server.ext('onPostAuth', (request, h) => {
+            if (request.path !== '/excel/read') {
+                return h.continue;
+            }
+
+            const { schema } = request.payload;
+            let parsedSchema = schema ? JSON.parse(schema) : {};
+
+            function getParsedType(type) {
+                switch (type) {
+                    case 'String':
+                        return String;
+                    case 'Number':
+                        return Number;
+                    case 'Boolean':
+                        return Boolean;
+                    case 'Date':
+                        return Date;
+                    case 'Integer':
+                        return Integer;
+                    case 'Email':
+                        return Email;
+                    case 'URL':
+                        return URL;
+                    default:
+                        return type;
+                };
+            };
+
+            for (const key of Object.keys(parsedSchema)) {
+                const _parsedSchema = parsedSchema[key];
+
+                if (_parsedSchema.type) {
+                    _parsedSchema.type = getParsedType(_parsedSchema.type);
+                }
+            }
+
+            request.payload.schema = parsedSchema;
+
+            return h.continue;
+        });
         server.route({
             method: 'POST',
             path: '/excel/read',
@@ -27,7 +68,7 @@ exports.plugin = {
                 },
                 validate: {
                     payload: Joi.object({
-                        schema: Joi.string().optional().description('This should be a JSON object, see https://gitlab.com/catamphetamine/read-excel-file#json for more information. Eg. `{"firstname":{"prop":"First name","type":"String"},"lastname":{"prop":"Last name","type":"String"},"email":{"prop":"E-mail","type":"String"}}`'),
+                        schema: Joi.object().optional().description('This should be a JSON object, see https://gitlab.com/catamphetamine/read-excel-file#json for more information. Eg. `{"firstname":{"prop":"First name","type":"String"},"lastname":{"prop":"Last name","type":"String"},"email":{"prop":"E-mail","type":"String"}}`'),
                         sheet: Joi.string().optional(),
                         file: Joi.object().required(),
                     }),
@@ -35,42 +76,12 @@ exports.plugin = {
             },
             handler: async function (request, h) {
                 Logger.debug(`Request ${request.method.toUpperCase()} ${request.path}`);
-                const { file, schema, sheet } = request.payload;
-
-                function getParsedType(type) {
-                    switch (type) {
-                        case 'String':
-                            return String;
-                        case 'Number':
-                            return Number;
-                        case 'Boolean':
-                            return Boolean;
-                        case 'Date':
-                            return Date;
-                        case 'Integer':
-                            return Integer;
-                        case 'Email':
-                            return Email;
-                        case 'URL':
-                            return URL;
-                        default:
-                            return type;
-                    };
-                };
+                const { file, sheet } = request.payload;
+                let { schema } = request.payload;
 
                 try {
-                    let parsedSchema = schema ? JSON.parse(schema) : {};
-
-                    for (const key of Object.keys(parsedSchema)) {
-                        const _parsedSchema = parsedSchema[key];
-
-                        if (_parsedSchema.type) {
-                            _parsedSchema.type = getParsedType(_parsedSchema.type);
-                        }
-                    }
-
-                    if (Object.keys(parsedSchema).length === 0) {
-                        parsedSchema = await readXlsxFile(file.path).then(rows => {
+                    if (Object.keys(schema).length === 0) {
+                        schema = await readXlsxFile(file.path).then(rows => {
                             const obj = {};
 
                             for (const key of rows[0]) {
@@ -84,7 +95,7 @@ exports.plugin = {
                         });
                     }
 
-                    const options = { schema: parsedSchema };
+                    const options = { schema };
 
                     if (sheet) {
                         Object.assign(options, { sheet })
