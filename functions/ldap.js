@@ -13,22 +13,24 @@ const Qs = require('qs');
 exports.plugin = {
   name: 'ldap',
   register: async function (server) {
-    server.ext('onRequest', (request, h) => {
-      let { tlsOptions, attributes } = request.query;
+      server.ext('onPostAuth', (request, h) => {
+          if (request.path === '/ldap/search') {
+              let { tlsOptions, attributes } = request.query;
 
-      if (tlsOptions) {
-        tlsOptions = Qs.parse(tlsOptions, {
-          delimiter: /[;,]/,
-        });
+              if (tlsOptions) {
+                  tlsOptions = Qs.parse(tlsOptions, {
+                      delimiter: /[;,]/,
+                  });
 
-        request.query.tlsOptions = tlsOptions;
-      }
+                  request.query.tlsOptions = tlsOptions;
+              }
 
-      if (attributes && !Array.isArray(attributes)) {
-        attributes = [attributes];
+              if (attributes && !Array.isArray(attributes)) {
+                  attributes = [attributes];
 
-        request.query.attributes = attributes;
-      }
+                  request.query.attributes = attributes;
+              }
+          }
 
       return h.continue;
     });
