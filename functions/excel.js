@@ -12,43 +12,41 @@ exports.plugin = {
     name: 'excel',
     register: function (server) {
         server.ext('onPostAuth', (request, h) => {
-            if (request.path !== '/excel/read') {
-                return h.continue;
-            }
+            if (request.path === '/excel/read') {
+                const { schema } = request.payload;
+                let parsedSchema = schema ? JSON.parse(schema) : {};
 
-            const { schema } = request.payload;
-            let parsedSchema = schema ? JSON.parse(schema) : {};
-
-            function getParsedType(type) {
-                switch (type) {
-                    case 'String':
-                        return String;
-                    case 'Number':
-                        return Number;
-                    case 'Boolean':
-                        return Boolean;
-                    case 'Date':
-                        return Date;
-                    case 'Integer':
-                        return Integer;
-                    case 'Email':
-                        return Email;
-                    case 'URL':
-                        return URL;
-                    default:
-                        return type;
+                function getParsedType(type) {
+                    switch (type) {
+                        case 'String':
+                            return String;
+                        case 'Number':
+                            return Number;
+                        case 'Boolean':
+                            return Boolean;
+                        case 'Date':
+                            return Date;
+                        case 'Integer':
+                            return Integer;
+                        case 'Email':
+                            return Email;
+                        case 'URL':
+                            return URL;
+                        default:
+                            return type;
+                    };
                 };
-            };
 
-            for (const key of Object.keys(parsedSchema)) {
-                const _parsedSchema = parsedSchema[key];
+                for (const key of Object.keys(parsedSchema)) {
+                    const _parsedSchema = parsedSchema[key];
 
-                if (_parsedSchema.type) {
-                    _parsedSchema.type = getParsedType(_parsedSchema.type);
+                    if (_parsedSchema.type) {
+                        _parsedSchema.type = getParsedType(_parsedSchema.type);
+                    }
                 }
-            }
 
-            request.payload.schema = parsedSchema;
+                request.payload.schema = parsedSchema;
+            }
 
             return h.continue;
         });
