@@ -14,26 +14,26 @@ exports.plugin = {
   name: 'ldap',
   register: async function (server) {
       server.ext('onPostAuth', (request, h) => {
-          if (request.path === '/ldap/search') {
-              let { tlsOptions, attributes } = request.query;
+        if (request.path === '/ldap/search') {
+          let { tlsOptions, attributes } = request.query;
 
-              if (tlsOptions) {
-                  tlsOptions = Qs.parse(tlsOptions, {
-                      delimiter: /[;,]/,
-                  });
+          if (tlsOptions) {
+            tlsOptions = Qs.parse(tlsOptions, {
+              delimiter: /[;,]/,
+            });
 
-                  request.query.tlsOptions = tlsOptions;
-              }
-
-              if (attributes && !Array.isArray(attributes)) {
-                  attributes = [attributes];
-
-                  request.query.attributes = attributes;
-              }
+            request.query.tlsOptions = tlsOptions;
           }
 
-      return h.continue;
-    });
+          if (attributes && !Array.isArray(attributes)) {
+            attributes = [attributes];
+
+            request.query.attributes = attributes;
+          }
+        }
+
+        return h.continue;
+      });
     server.route({
       method: 'GET',
       path: '/ldap/search',
