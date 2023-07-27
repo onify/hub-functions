@@ -66,9 +66,9 @@ exports.plugin = {
                 },
                 validate: {
                     payload: Joi.object({
-                        schema: Joi.object().optional().description('This should be a JSON object, see https://gitlab.com/catamphetamine/read-excel-file#json for more information. Eg. `{"firstname":{"prop":"First name","type":"String"},"lastname":{"prop":"Last name","type":"String"},"email":{"prop":"E-mail","type":"String"}}`'),
-                        sheet: Joi.string().optional(),
-                        file: Joi.object().required(),
+                        schema: Joi.object().optional().description('This should be valid JSON, see https://gitlab.com/catamphetamine/read-excel-file#json for more information. Eg. `{"firstname":{"prop":"First name","type":"String"},"lastname":{"prop":"Last name","type":"String"},"email":{"prop":"E-mail","type":"String"}}`'),
+                        sheet: Joi.string().optional().description('By default, it reads the first sheet in the document. If you have multiple sheets in your spreadsheet then pass sheet name.'),
+                        file: Joi.object().required().description('The excel file to be read.'),
                     }),
                 }
             },
