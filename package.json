@@ -44,6 +44,6 @@
     "@hapi/code": "^9.0.1",
     "@hapi/eslint-plugin": "^6.0.0",
     "@hapi/lab": "^25.0.1",
-    "nodemon": "^2.0.20"
+    "nodemon": "^3.0.1"
   }
 }
