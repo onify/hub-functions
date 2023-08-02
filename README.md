@@ -11,7 +11,7 @@
 
 ## latest
 
-* feat: excel read endpoint
+* feature: `/excel/read` - New function: Read (and parse) uploaded excel file
 
 ### 1.4.2
 
