@@ -326,4 +326,39 @@ describe('excel read:', () => {
 
         expect(res.statusCode).to.equal(500);
     });
+
+    it(`POST ${FUNCTION_ENDPOINT}/read - invalid json input is supplied - returns 400`, async () => {
+        const headerRow = ['Förnamn', 'Efternamn', 'Epost'];
+        const dataRows = [
+            ['First1', 'Last1', 'invalidmail.com'],
+            ['First2', 'Last2', 'first2@mail.com'],
+            ['First3', 'Last3', 'first3@mail.com'],
+        ];
+        const schema = 'gg';
+
+        const data = [headerRow, ...dataRows];
+
+        const workbook = new ExcelJS.Workbook();
+        const sheet = workbook.addWorksheet('Test');
+
+        sheet.addRows(data);
+
+        const bufferData = await workbook.xlsx.writeBuffer();
+        const form = new FormData();
+
+        form.append('file', bufferData, { filename: 'test.xlsx' });
+        form.append('schema', JSON.stringify(schema));
+
+        const res = await server.inject({
+            method: 'POST',
+            url: `${FUNCTION_ENDPOINT}/read`,
+            payload: form.getBuffer(),
+            headers: form.getHeaders(),
+        });
+
+        const { statusCode, result } = res;
+
+        expect(statusCode).to.equal(400);
+        expect(result.message).to.equal('"schema" must be of type object');
+    });
 });
