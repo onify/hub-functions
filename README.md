@@ -9,7 +9,9 @@
 
 ## Changelog
 
-## latest
+### latest
+
+### 1.5.0
 
 * feature: `/excel/read` - New function: Read (and parse) uploaded excel file
 
