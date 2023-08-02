@@ -13,9 +13,6 @@ exports.plugin = {
     register: function (server) {
         server.ext('onPostAuth', (request, h) => {
             if (request.path === '/excel/read') {
-                const { schema } = request.payload;
-                let parsedSchema = schema ? JSON.parse(schema) : {};
-
                 function getParsedType(type) {
                     switch (type) {
                         case 'String':
@@ -37,15 +34,23 @@ exports.plugin = {
                     };
                 };
 
-                for (const key of Object.keys(parsedSchema)) {
-                    const _parsedSchema = parsedSchema[key];
+                const { schema } = request.payload;
 
-                    if (_parsedSchema.type) {
-                        _parsedSchema.type = getParsedType(_parsedSchema.type);
+                try {
+                    let parsedSchema = schema ? JSON.parse(schema) : {};
+
+                    for (const key of Object.keys(parsedSchema)) {
+                        const _parsedSchema = parsedSchema[key];
+
+                        if (_parsedSchema.type) {
+                            _parsedSchema.type = getParsedType(_parsedSchema.type);
+                        }
                     }
-                }
 
-                request.payload.schema = parsedSchema;
+                    request.payload.schema = parsedSchema;
+                } catch (error) {
+                    return h.continue;
+                }
             }
 
             return h.continue;
