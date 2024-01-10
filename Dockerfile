@@ -6,6 +6,7 @@ LABEL code="nodejs"
 
 # Create app directory
 RUN mkdir -p /usr/app
+RUN mkdir -p /.npm
 
 WORKDIR /usr/app
 
