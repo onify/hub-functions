@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "lab -v",
+    "test": "lab -v -l",
     "test-and-lint": "lab -v -L"
   },
   "repository": {
