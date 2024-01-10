@@ -1,0 +1,50 @@
+name: Build branch
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm test
+  build-latest:
+    name: Build branch
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_ID: ${{ secrets.GCP_BUILD_PROJECT_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - run: |
+          sudo apt-get install python2.7
+          export CLOUDSDK_PYTHON="/usr/bin/python2"
+
+      - uses: google-github-actions/setup-gcloud@v0
+        with:
+          version: "286.0.0"
+          project_id: ${{ secrets.GCP_BUILD_PROJECT_ID }}
+          service_account_email: ${{ secrets.GCP_BUILD_SERVICE_ACCOUNT_EMAIL }}
+          service_account_key: ${{ secrets.GCP_BUILD_SERVICE_ACCOUNT_KEY }}
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/} | sed -r 's/\//-/g')" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Build
+        run: |-
+          gcloud builds submit \
+            --quiet \
+            --tag "eu.gcr.io/$PROJECT_ID/hub/functions:${{ steps.extract_branch.outputs.branch }}"
