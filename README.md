@@ -11,6 +11,12 @@
 
 ### latest
 
+### 1.6.0
+
+* chore: use node 18
+* chore: add GitHub workflow for building branch
+* test: fix test after node 18 update
+
 ### 1.5.0
 
 * feature: `/excel/read` - New function: Read (and parse) uploaded excel file
